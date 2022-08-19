@@ -59,11 +59,12 @@ export const InputDiv = styled(Input)`
 
 export const CustomButton = styled.button`
   width: 60%;
-  max-width: 700px;
   height: 50px;
+  max-width: 700px;
   border: 0px solid;
   font-size: 20px;
   margin: 10px 0px;
+  text-align: center;
 
   @media (max-width: 1050px) {
     flex-direction: column;
@@ -77,4 +78,12 @@ export const CustomButton = styled.button`
   }
 
   cursor: pointer;
+`;
+
+export const ButtonText = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

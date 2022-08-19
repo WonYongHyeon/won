@@ -14,9 +14,11 @@ export default function LoginUI(props: ILoginUIProps) {
           <S.InputTitle>비밀번호</S.InputTitle>
           <S.InputDiv onChange={props.onChangePassword} />
         </S.InputWrapper>
-        <S.CustomButton>로그인</S.CustomButton>
+        <S.CustomButton>
+          <S.ButtonText>로그인</S.ButtonText>
+        </S.CustomButton>
         <S.CustomButton type="button" onClick={props.onClickCancel}>
-          뒤로가기
+          <S.ButtonText>뒤로가기</S.ButtonText>
         </S.CustomButton>
       </S.Wrapper>
     </form>

@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
+import LayoutBanner from "./banner";
 import LayoutFooter from "./footer";
 import LayoutHeader from "./header";
 
@@ -23,7 +24,7 @@ export default function Layout(props: ILayoutProps) {
   return (
     <>
       <LayoutHeader />
-      {!isHiddenBanner && <LayoutHeader />}
+      {!isHiddenBanner && <LayoutBanner />}
       <Body>{props.children}</Body>
       {!isHiddenFooter && <LayoutFooter />}
     </>
