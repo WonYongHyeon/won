@@ -10,4 +10,5 @@ export interface ISignupUIProps {
   register: UseFormRegister<IFormData>;
   handleSubmit: UseFormHandleSubmit<IFormData>;
   onClickSignup: (data: IFormData) => void;
+  onClickCancel: () => void;
 }

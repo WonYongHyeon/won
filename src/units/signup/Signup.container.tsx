@@ -45,11 +45,16 @@ export default function Signup() {
     }
   };
 
+  const onClickCancel = () => {
+    router.back();
+  };
+
   return (
     <SignupUI
       register={register}
       handleSubmit={handleSubmit}
       onClickSignup={onClickSignup}
+      onClickCancel={onClickCancel}
     ></SignupUI>
   );
 }
