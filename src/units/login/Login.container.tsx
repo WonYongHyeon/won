@@ -8,6 +8,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { IFormData } from "./Login.types";
 import { ChangeEvent } from "react";
 import Swal from "sweetalert2";
+import { useRecoilState } from "recoil";
+import { AccessToken } from "../../commons/store";
 
 const schema = yup.object({
   email: yup.string().required("필수입력사항입니다.").email(),
@@ -19,8 +21,9 @@ const schema = yup.object({
 
 export default function Login() {
   const router = useRouter();
+  const [accessToken, setAccessToken] = useRecoilState(AccessToken);
   const [loginUser] = useMutation(LOGIN_USER);
-  const { register, handleSubmit, formState, watch, setValue, trigger } =
+  const { register, handleSubmit, formState, setValue, trigger } =
     useForm<IFormData>({
       resolver: yupResolver(schema),
       mode: "onChange",
@@ -38,12 +41,13 @@ export default function Login() {
 
   const onClickLogin = async (data: IFormData) => {
     try {
-      await loginUser({
+      const result = await loginUser({
         variables: {
           email: data.email,
           password: data.password,
         },
       });
+      setAccessToken(result.data.loginUser.accessToken);
       router.push("/");
     } catch (error: any) {
       Swal.fire({

@@ -6,7 +6,7 @@ import Head from "next/head";
 import Layout from "../src/commons/layout";
 import ApolloSetting from "../src/commons/apolloSetting";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: any) {
   return (
     <>
       <Head>
