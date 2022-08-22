@@ -1,8 +1,8 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
+import Swal from "sweetalert2";
 import { AccessToken } from "../../store";
 
 const Wrapper = styled.div`
@@ -57,14 +57,41 @@ const FETCH_USER_LOGGED_IN = gql`
   }
 `;
 
+const LOGOUT_USER = gql`
+  mutation logoutUser {
+    logoutUser
+  }
+`;
+
 export default function LayoutHeader() {
   const router = useRouter();
+  const setAccessToken = useSetRecoilState(AccessToken);
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
+  const [logoutUser] = useMutation(LOGOUT_USER);
+
   const onClickLogo = () => {
     router.push("/");
   };
+
   const onClickLogin = () => {
     router.push("/login");
+  };
+
+  const onClickSignup = () => {
+    router.push("/signup");
+  };
+
+  const onClickLogout = async () => {
+    try {
+      await logoutUser();
+      setAccessToken("");
+      router.push("/");
+    } catch (error: any) {
+      Swal.fire({
+        icon: "error",
+        text: error.message,
+      });
+    }
   };
 
   return (
@@ -73,10 +100,12 @@ export default function LayoutHeader() {
         <HeaderEnableArea>
           <LogoText onClick={onClickLogo}>공구</LogoText>
           <MenuWrapper>
-            <MenuText onClick={onClickLogin}>
+            <MenuText onClick={data ? undefined : onClickLogin}>
               {data ? data.fetchUserLoggedIn.name + " 님" : "로그인"}
             </MenuText>
-            <MenuText>회원가입</MenuText>
+            <MenuText onClick={data ? onClickLogout : onClickSignup}>
+              {data ? "로그아웃" : "회원가입"}
+            </MenuText>
           </MenuWrapper>
         </HeaderEnableArea>
       </Wrapper>
