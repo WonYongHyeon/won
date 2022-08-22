@@ -1,6 +1,5 @@
 import "../styles/globals.css";
 import "antd/dist/antd.css";
-import type { AppProps } from "next/app";
 import { RecoilRoot } from "recoil";
 import Head from "next/head";
 import Layout from "../src/commons/layout";

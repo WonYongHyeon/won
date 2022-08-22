@@ -9,21 +9,21 @@ export default function SignupUI(props: ISignupUIProps) {
         <S.InputWrapper>
           <S.InputTitle>이메일</S.InputTitle>
           <S.InputDiv
-            {...props.register("email")}
+            onChange={props.onChangeEmail}
             placeholder="이메일을 입력해주세요"
           />
         </S.InputWrapper>
         <S.InputWrapper>
           <S.InputTitle>비밀번호</S.InputTitle>
           <S.InputDiv
-            {...props.register("password")}
+            onChange={props.onChangePassword}
             placeholder="비밀번호를 입력해주세요 (6자 이상)"
           />
         </S.InputWrapper>
         <S.InputWrapper>
           <S.InputTitle>이름</S.InputTitle>
           <S.InputDiv
-            {...props.register("name")}
+            onChange={props.onChangeName}
             placeholder="이름을 입력해주세요"
           />
         </S.InputWrapper>

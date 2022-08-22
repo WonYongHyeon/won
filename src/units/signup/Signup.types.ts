@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import { UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
 
 export interface IFormData {
@@ -11,4 +12,7 @@ export interface ISignupUIProps {
   handleSubmit: UseFormHandleSubmit<IFormData>;
   onClickSignup: (data: IFormData) => void;
   onClickCancel: () => void;
+  onChangeEmail: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeName: (event: ChangeEvent<HTMLInputElement>) => void;
 }
