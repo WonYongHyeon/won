@@ -1,6 +1,5 @@
 import { useQuery } from "@apollo/client";
 import { NextRouter, useRouter } from "next/router";
-import type { DatePickerProps } from "antd";
 import _ from "lodash";
 import { ChangeEvent, MouseEvent, useState } from "react";
 import ReviewListUI from "./Review.presenter";
@@ -12,13 +11,10 @@ export default function ReviewList() {
   const [search, setSearch] = useState("");
   const [nowPage, setNowPage] = useState(1);
 
-  const [startDate, setStartDate] = useState(
-    new Date(2000, 2, 1).toISOString()
-  );
-  const [endDate, setEndDate] = useState(new Date().toISOString());
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
 
   const { data: review, refetch } = useQuery(FETCH_BOARDS);
-
   const { data: number, refetch: countRefetch } = useQuery(FETCH_BOARDS_COUNT);
 
   const getDebounce = _.debounce((input: string) => {
@@ -49,28 +45,19 @@ export default function ReviewList() {
     router.push(`/review/new`);
   };
 
-  const onChangeStartDate: DatePickerProps["onChange"] = (date, dateString) => {
-    if (date === null) {
-      const date = new Date(2000, 2, 1);
-      setStartDate(date.toISOString());
-    } else {
-      const date = new Date(dateString + "T00:00:00");
-      setStartDate(date.toISOString());
-    }
-  };
-
-  const onChangeEndDate: DatePickerProps["onChange"] = (date, dateString) => {
-    if (date === null) {
-      const date = new Date();
-      setEndDate(date.toISOString());
-    } else {
-      const date = new Date(dateString + "T23:59:59");
-      setEndDate(date.toISOString());
-    }
-  };
-
   const onClickSearch = () => {
-    getDebounce(search);
+    refetch({
+      search,
+      page: 1,
+      endDate,
+      startDate,
+    });
+    countRefetch({
+      search,
+      endDate,
+      startDate,
+    });
+    setNowPage(1);
   };
 
   return (
@@ -83,10 +70,10 @@ export default function ReviewList() {
       setNowPage={setNowPage}
       onClickReview={onClickReview}
       onClickWriteButton={onClickWriteButton}
-      onChangeStartDate={onChangeStartDate}
-      onChangeEndDate={onChangeEndDate}
       onChangeSearch={onChangeSearch}
       onClickSearch={onClickSearch}
+      setStartDate={setStartDate}
+      setEndDate={setEndDate}
     ></ReviewListUI>
   );
 }
