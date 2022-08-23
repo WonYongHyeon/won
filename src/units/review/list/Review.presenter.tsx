@@ -1,11 +1,11 @@
 import Pagination from "./pagination/pagination.container";
-import { DatePicker } from "antd";
 import * as S from "./Review.styles";
 import { v4 as uuidv4 } from "uuid";
-import { IBoardListUIProps } from "./Review.types";
+import { IReviewListUIProps } from "./Review.types";
 import { getDate } from "../../../commons/lib/utils";
+import DatePicker from "../../../commons/datepicker";
 
-export default function ReviewListUI(props: IBoardListUIProps) {
+export default function ReviewListUI(props: IReviewListUIProps) {
   return (
     <S.Body>
       <S.Wrapper>
@@ -14,13 +14,17 @@ export default function ReviewListUI(props: IBoardListUIProps) {
             placeholder="제목을 입력해주세요."
             onChange={props.onChangeSearch}
           ></S.TitleSearchInput>
-          {/* <S.DateSearchWrapper>
-            <S.DateSpace direction="vertical">
-              <DatePicker onChange={props.onChangeStartDate} />
+          {/* <S.DateSearchWrapper> */}
+          <S.DateSpace direction="vertical">
+            {/* <ReactDatePicker onChange={props.onChangeStartDate} />
               <div>~</div>
-              <DatePicker onChange={props.onChangeEndDate} />
-            </S.DateSpace>
-          </S.DateSearchWrapper> */}
+              <ReactDatePicker onChange={props.onChangeEndDate} /> */}
+            <DatePicker
+              setStartDate={props.setStartDate}
+              setEndDate={props.setEndDate}
+            />
+          </S.DateSpace>
+          {/* </S.DateSearchWrapper> */}
           <S.SearchButton onClick={props.onClickSearch}>검색</S.SearchButton>
         </S.SearchWrapper>
         <S.ListWrapper>

@@ -1,6 +1,7 @@
+import { ApolloQueryResult, OperationVariables } from "@apollo/client";
 import { ChangeEvent, Dispatch, MouseEvent, SetStateAction } from "react";
 
-export interface IBoardListUIProps {
+export interface IReviewListUIProps {
   review: any;
   number: any;
   search: string;
@@ -8,15 +9,13 @@ export interface IBoardListUIProps {
   setNowPage: Dispatch<SetStateAction<number>>;
   onClickReview: (event: MouseEvent<HTMLDivElement>) => void;
   onClickWriteButton: () => void;
-  refetch: any;
-  onChangeStartDate: any;
-  onChangeEndDate: any;
+  refetch: (
+    variables?: Partial<OperationVariables> | undefined
+  ) => Promise<ApolloQueryResult<any>>;
   onChangeSearch: (event: ChangeEvent<HTMLInputElement>) => void;
-  onClickSearch: (search: any) => void;
-}
-
-export interface IBoardWriteProps {
-  isEdit: boolean;
+  onClickSearch: (event: MouseEvent<HTMLButtonElement>) => void;
+  setStartDate: Dispatch<SetStateAction<Date | null>>;
+  setEndDate: Dispatch<SetStateAction<Date | null>>;
 }
 
 export interface IMyVariables {
