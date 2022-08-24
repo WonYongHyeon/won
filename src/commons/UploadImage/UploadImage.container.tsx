@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
-import { ChangeEvent, useEffect, useRef } from "react";
+import { ChangeEvent, useRef } from "react";
 import UploadsImageUI from "./UploadImage.presenter";
 import { UPLOAD_FILE } from "./UploadImage.query";
 import { IUploadsImageProps } from "./UploadImage.types";
@@ -35,7 +35,6 @@ export default function UploadImage(props: IUploadsImageProps) {
   return (
     <UploadsImageUI
       fileRef={fileRef}
-      // 미리보기 url이 담겨있는 배열에서 해당 위치의 값을 보내줍니다.
       fileUrl={props.fileUrls[props.index]}
       onClickUpload={onClickUpload}
       onChangeFile={onChangeFile}
