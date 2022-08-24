@@ -42,7 +42,7 @@ const formats = [
 
 interface IProps {
   getValues: UseFormGetValues<IReviewData>;
-  onChangeContent: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  onChangeContent: (value: string) => void;
 }
 
 export default function ReactQuillContainer(props: IProps) {

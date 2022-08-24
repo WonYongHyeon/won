@@ -47,7 +47,7 @@ export interface IReviewWriteUIProps {
   handleSubmit: UseFormHandleSubmit<IReviewData>;
   getValues: UseFormGetValues<IReviewData>;
 
-  onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  onChangeContents: (value: string) => void;
   onClickRegistrationButton: (data: any) => Promise<void>;
   onClickEdit: (data: any) => Promise<void>;
   onChangeFiles: (index: number, url: string) => void;
