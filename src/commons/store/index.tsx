@@ -4,8 +4,3 @@ export const AccessToken = atom({
   key: "accessToken" + uuidv4(),
   default: "",
 });
-
-// export const LoadState = atom({
-//   key: "load" + uuidv4(),
-//   default: true,
-// });

@@ -1,5 +1,6 @@
 import { IPaginationUIProps } from "./pagination.types";
 import * as S from "./pagination.styles";
+import { v4 as uuidv4 } from "uuid";
 
 export default function PaginationUI(props: IPaginationUIProps) {
   return (
@@ -14,7 +15,7 @@ export default function PaginationUI(props: IPaginationUIProps) {
         return (
           idx + props.start <= props.lastPage && (
             <S.Page
-              key={idx + props.start}
+              key={uuidv4()}
               id={String(idx + props.start)}
               onClick={props.onClickPageMove}
               style={{
