@@ -1,10 +1,23 @@
-import { ChangeEvent } from "react";
+import {
+  UseFormGetValues,
+  UseFormHandleSubmit,
+  UseFormRegister,
+} from "react-hook-form";
 
-export interface IBoardData {
+export interface IReviewData {
   writer?: string;
   title?: string;
+  password?: string;
   contents?: string;
-  images?: string[];
+}
+
+export interface IFetchData {
+  fetchBoard: {
+    writer: string;
+    title: string;
+    contents: string;
+    images: string[];
+  };
 }
 
 export interface IReviewNewProps {
@@ -24,30 +37,17 @@ export interface IMyVariables {
   };
 }
 
-export interface IBoardWriteUIProps {
-  writerError: string;
-  passwordError: string;
-  titleError: string;
-  contentsError: string;
-  zipcode: string;
-  address: string;
-  isDisabled: boolean;
-  isEditDisabled: boolean;
+export interface IReviewWriteUIProps {
   isEdit: boolean;
   isOk: boolean;
-  data: any;
-  isModalVisible: boolean;
+  data: IFetchData;
   fileUrls: string[];
+  register: UseFormRegister<IReviewData>;
+  handleSubmit: UseFormHandleSubmit<IReviewData>;
+  getValues: UseFormGetValues<IReviewData>;
 
-  onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
-  onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
-  onClickRegistrationButton: () => void;
-  onClickEdit: () => void;
-  onToggleModal: () => void;
-  handleComplete: (data: any) => void;
-  onChangeFiles: (file: File, index: number, url: string) => void;
+  onChangeContents: (value: string) => void;
+  onClickRegistrationButton: (data: any) => Promise<void>;
+  onClickEdit: (data: any) => Promise<void>;
+  onChangeFiles: (index: number, url: string) => void;
 }

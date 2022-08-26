@@ -32,6 +32,7 @@ import { IBoardDetailProps } from "./ReviewDetail.types";
 import { Tooltip } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import { getDate } from "../../../commons/lib/utils";
+import Dompurify from "dompurify";
 
 export default function BoardDetailUI(props: IBoardDetailProps) {
   return (
@@ -74,7 +75,11 @@ export default function BoardDetailUI(props: IBoardDetailProps) {
               );
             })}
           </ImageWrapper>
-          <Contents>{props.data?.fetchBoard.contents}</Contents>
+          <Contents
+            dangerouslySetInnerHTML={{
+              __html: Dompurify.sanitize(props.data?.fetchBoard.contents),
+            }}
+          ></Contents>
         </BodyWrapper>
         <FooterWrapper>
           <EvaluationBox>
