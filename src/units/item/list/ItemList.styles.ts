@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { Space } from "antd";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -15,6 +14,13 @@ export const SearchWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-bottom: 20px;
+`;
+
+export const CheckSoldWrapper = styled.div`
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const CheckSold = styled.div`

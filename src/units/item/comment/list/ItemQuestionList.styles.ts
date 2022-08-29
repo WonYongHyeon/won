@@ -97,7 +97,8 @@ export const QuestionListRegistrationButton = styled.button`
 `;
 
 export const QuestionListWrapper = styled.div`
-  width: 100%;
+  margin: 0 auto;
+  width: 1200px;
   display: flex;
   flex-direction: column;
   padding: 30px;

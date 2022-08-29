@@ -9,12 +9,14 @@ export default function ItemListUI(props: IItemListUIProps) {
       <S.RightLeftWrapper></S.RightLeftWrapper>
       <S.Wrapper>
         <S.SearchWrapper>
-          <S.CheckSold onClick={props.onClickSellingSoldout(false)}>
-            판매중상품
-          </S.CheckSold>
-          <S.CheckSold onClick={props.onClickSellingSoldout(true)}>
-            판매된상품
-          </S.CheckSold>
+          <S.CheckSoldWrapper>
+            <S.CheckSold onClick={props.onClickSellingSoldout(false)}>
+              판매중상품
+            </S.CheckSold>
+            <S.CheckSold onClick={props.onClickSellingSoldout(true)}>
+              판매된상품
+            </S.CheckSold>
+          </S.CheckSoldWrapper>
           <S.TitleSearchInput
             type="text"
             placeholder="검색할 상품을 입력해주세요."

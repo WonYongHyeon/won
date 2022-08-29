@@ -29,12 +29,19 @@ export default function ItemDetail(props: IItemDetailProps) {
   );
 
   const onClickPick = async () => {
-    await toggleUseditemPick({
-      variables: {
-        useditemId: props.data.fetchUseditem._id,
-      },
-    });
-    props.useditemRefetch();
+    try {
+      await toggleUseditemPick({
+        variables: {
+          useditemId: router.query.id,
+        },
+      });
+      props.useditemRefetch();
+    } catch (error: any) {
+      Swal.fire({
+        icon: "error",
+        text: error.message,
+      });
+    }
   };
 
   const onClickMoveEditPage = () => {
