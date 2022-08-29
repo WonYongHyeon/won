@@ -89,6 +89,10 @@ export default function LayoutHeader() {
     router.push("/signup");
   };
 
+  const onClickMypage = () => {
+    router.push("/mypage");
+  };
+
   const onClickLogout = async () => {
     try {
       await logoutUser();
@@ -121,7 +125,7 @@ export default function LayoutHeader() {
       <HeaderEnableArea>
         <LogoText onClick={onClickLogo}>공구</LogoText>
         <MenuWrapper>
-          <MenuText onClick={data ? undefined : onClickLogin}>
+          <MenuText onClick={data ? onClickMypage : onClickLogin}>
             {data ? data.fetchUserLoggedIn.name + " 님" : "로그인"}
           </MenuText>
           <MenuText onClick={data ? onClickLogout : onClickSignup}>
