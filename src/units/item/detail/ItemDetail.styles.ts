@@ -117,6 +117,12 @@ export const Contents = styled.div`
   font-size: 16px;
   word-wrap: break-word;
   padding-bottom: 30px;
+
+  img {
+    max-width: 100%;
+    display: flex;
+    margin: 0px auto;
+  }
 `;
 
 export const FooterWrapper = styled.div`
