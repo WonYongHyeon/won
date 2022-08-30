@@ -5,22 +5,45 @@ import { useSetRecoilState } from "recoil";
 import Swal from "sweetalert2";
 import { AccessToken } from "../../store";
 import "animate.css";
-import { useState } from "react";
+import { keyframes } from "@emotion/react";
+
+const fadeInDown = keyframes`
+  0% {
+      opacity: 0;
+      transform: translate3d(0, -100%, 0);
+  }
+  to {
+      opacity: 1;
+      transform: translateZ(0);
+  }
+  `;
 
 const Wrapper = styled.div`
+  width: 100%;
   height: 100px;
   background-color: black;
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 100;
+
+  :hover .dropdown {
+    display: flex;
+  }
+
+  .dropdown {
+    display: none;
+  }
 `;
 
 const HeaderEnableArea = styled.div`
   position: fixed;
   top: 0;
   width: 80%;
-  /* height: 100%; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -33,25 +56,65 @@ const LogoText = styled.div`
   color: white;
   text-align: center;
   line-height: 100px;
+  z-index: 100;
 
   cursor: pointer;
 `;
 
 const MenuWrapper = styled.div`
-  width: 600px;
+  /* width: 600px; */
   display: flex;
   justify-content: end;
 `;
 
-const MenuText = styled.div`
+const MenuHeaderText = styled.div`
+  width: 150px;
   line-height: 100px;
   font-size: 20px;
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 20px;
+  /* padding: 0 20px; */
   cursor: pointer;
+`;
+
+const MenuText = styled.div`
+  width: 150px;
+  font-size: 16px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  cursor: pointer;
+`;
+
+const MenuNav = styled.div`
+  /* display: none; */
+  display: flex;
+
+  position: absolute;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  background-color: black;
+  animation: ${fadeInDown} 1s;
+  color: white;
+  /* padding: 25px 0; */
+  justify-content: center;
+  align-items: center;
+`;
+
+const MenuColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  text-align: end;
+`;
+
+const MenuNavWrapper = styled.div`
+  width: 80%;
 `;
 
 const FETCH_USER_LOGGED_IN = gql`
@@ -73,9 +136,6 @@ export default function LayoutHeader() {
   const setAccessToken = useSetRecoilState(AccessToken);
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
   const [logoutUser] = useMutation(LOGOUT_USER);
-  const [isMenu, setIsMenu] = useState(false);
-
-  const [count, setCount] = useState(0);
 
   const onClickLogo = () => {
     router.push("/");
@@ -106,43 +166,48 @@ export default function LayoutHeader() {
     }
   };
 
-  // const onHoverOver = () => {
-  //   // if (count === 0) {
-  //   // setCount(1);
-  //   setIsMenu(true);
-  //   // }
-  //   console.log("1");
-  // };
-  // const onHoverOut = () => {
-  //   // setCount(0);
-  //   setIsMenu(false);
-  // };
+  const onClickReview = () => {
+    router.push("/review");
+  };
+
+  const onClickMarkets = () => {
+    router.push("/markets");
+  };
 
   return (
-    <Wrapper
-    // onMouseOver={onHoverOver} onMouseOut={onHoverOut}
-    >
+    <Wrapper>
       <HeaderEnableArea>
         <LogoText onClick={onClickLogo}>공구</LogoText>
         <MenuWrapper>
-          <MenuText onClick={data ? onClickMypage : onClickLogin}>
-            {data ? data.fetchUserLoggedIn.name + " 님" : "로그인"}
-          </MenuText>
-          <MenuText onClick={data ? onClickLogout : onClickSignup}>
-            {data ? "로그아웃" : "회원가입"}
-          </MenuText>
+          <MenuHeaderText>게시판</MenuHeaderText>
+          {data ? (
+            <MenuHeaderText>
+              {data.fetchUserLoggedIn.name + " 님"}
+            </MenuHeaderText>
+          ) : (
+            <></>
+          )}
+          {data ? (
+            <></>
+          ) : (
+            <MenuHeaderText onClick={onClickLogin}>로그인</MenuHeaderText>
+          )}
         </MenuWrapper>
       </HeaderEnableArea>
-      {/* {isMenu && (
-        // <div style={{ height: "100px", marginTop: "100px" }}>
-        <div
-          style={{ color: "red", height: "100px", marginTop: "100px" }}
-          className="animate__animated animate__fadeInDown"
-        >
-          ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇ
-        </div>
-        // </div>
-      )} */}
+      <MenuNav className="dropdown">
+        <MenuNavWrapper>
+          <MenuWrapper>
+            <MenuColumn>
+              <MenuText onClick={onClickReview}>리뷰게시판</MenuText>
+              <MenuText onClick={onClickMarkets}>중고마켓게시판</MenuText>
+            </MenuColumn>
+            <MenuColumn>
+              <MenuText onClick={onClickMypage}>마이페이지</MenuText>
+              <MenuText onClick={onClickLogout}>로그아웃</MenuText>
+            </MenuColumn>
+          </MenuWrapper>
+        </MenuNavWrapper>
+      </MenuNav>
     </Wrapper>
   );
 }

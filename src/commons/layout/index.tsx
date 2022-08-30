@@ -8,6 +8,7 @@ import LayoutHeader from "./header";
 const Body = styled.div`
   width: 100%;
   margin: 0px auto;
+  margin-top: 200px;
 `;
 
 interface ILayoutProps {
@@ -24,7 +25,7 @@ export default function Layout(props: ILayoutProps) {
   return (
     <>
       <LayoutHeader />
-      {!isHiddenBanner && <LayoutBanner />}
+      {/* {!isHiddenBanner && <LayoutBanner />} */}
       <Body>{props.children}</Body>
       {!isHiddenFooter && <LayoutFooter />}
     </>
