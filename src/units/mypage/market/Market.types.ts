@@ -1,8 +1,79 @@
+import { ApolloQueryResult } from "@apollo/client";
+import { Dispatch, SetStateAction } from "react";
+
 export interface IMypageMarketUIProps {
-  buyData: any;
-  buyCount: any;
-  soldData: any;
-  soldCount: any;
-  pickedData: any;
-  pickedCount: any;
+  buyData: {
+    fetchUseditemsIBought: Array<{
+      name: string;
+      price: number;
+      soldAt: Date;
+      _id: string;
+    }>;
+  };
+  buyCount: {
+    fetchUseditemsCountIBought: number;
+  };
+
+  soldData: {
+    fetchUseditemsISold: Array<{
+      name: string;
+      price: number;
+      soldAt: Date;
+      _id: string;
+    }>;
+  };
+  soldCount: {
+    fetchUseditemsCountISold: number;
+  };
+
+  pickedData: {
+    fetchUseditemsIPicked: Array<{
+      name: string;
+      price: number;
+      _id: string;
+    }>;
+  };
+  pickedCount: {
+    fetchUseditemsCountIPicked: number;
+  };
+
+  nowPage: number;
+  setNowPage: Dispatch<SetStateAction<number>>;
+
+  refetchBuyData: (
+    variables?: Partial<{ page: number }> | undefined
+  ) => Promise<
+    ApolloQueryResult<{
+      fetchUseditemsIBought: Array<{
+        soldAt: Date;
+        name: string;
+        price: number;
+        _id: string;
+      }>;
+    }>
+  >;
+  refetchSoldData: (
+    variables?: Partial<{ page: number }> | undefined
+  ) => Promise<
+    ApolloQueryResult<{
+      fetchUseditemsISold: Array<{
+        name: string;
+        price: number;
+        _id: string;
+      }>;
+    }>
+  >;
+  refetchPickedData: (
+    variables?: Partial<{ page: number }> | undefined
+  ) => Promise<
+    ApolloQueryResult<{
+      fetchUseditemsIPicked: Array<{
+        name: string;
+        price: number;
+        _id: string;
+      }>;
+    }>
+  >;
+
+  onChangeOnePage: () => void;
 }

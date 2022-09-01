@@ -16,7 +16,7 @@ const fadeInDown = keyframes`
       opacity: 1;
       transform: translateZ(0);
   }
-  `;
+`;
 
 const Wrapper = styled.div`
   width: 100%;
@@ -82,6 +82,7 @@ const MenuHeaderText = styled.div`
 const MenuText = styled.div`
   width: 150px;
   font-size: 16px;
+  height: 50px;
   color: white;
   display: flex;
   justify-content: center;
@@ -91,9 +92,7 @@ const MenuText = styled.div`
 `;
 
 const MenuNav = styled.div`
-  /* display: none; */
   display: flex;
-
   position: absolute;
   top: 100px;
   left: 0;
@@ -101,7 +100,6 @@ const MenuNav = styled.div`
   background-color: black;
   animation: ${fadeInDown} 1s;
   color: white;
-  /* padding: 25px 0; */
   justify-content: center;
   align-items: center;
 `;
@@ -202,8 +200,17 @@ export default function LayoutHeader() {
               <MenuText onClick={onClickMarkets}>중고마켓게시판</MenuText>
             </MenuColumn>
             <MenuColumn>
-              <MenuText onClick={onClickMypage}>마이페이지</MenuText>
-              <MenuText onClick={onClickLogout}>로그아웃</MenuText>
+              {data ? (
+                <>
+                  <MenuText onClick={onClickMypage}>마이페이지</MenuText>
+                  <MenuText onClick={onClickLogout}>로그아웃</MenuText>
+                </>
+              ) : (
+                <>
+                  <MenuText onClick={onClickSignup}>회원가입</MenuText>
+                  <MenuText></MenuText>
+                </>
+              )}
             </MenuColumn>
           </MenuWrapper>
         </MenuNavWrapper>
