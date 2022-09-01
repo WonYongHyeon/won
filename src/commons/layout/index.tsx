@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
-import LayoutBanner from "./banner";
 import LayoutFooter from "./footer";
 import LayoutHeader from "./header";
 

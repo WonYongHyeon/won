@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+import { useState } from "react";
 import MypageMarketUI from "./Market.presenter";
 import {
   FETCH_USEDITEMS_COUNT_I_BOUGHT,
@@ -10,15 +11,44 @@ import {
 } from "./Market.query";
 
 export default function MypageMarket() {
-  const { data: buyData } = useQuery(FETCH_USEDITEMS_I_BOUGHT);
+  const [nowPage, setNowPage] = useState(1);
+
+  const { data: buyData, refetch: refetchBuyData } = useQuery(
+    FETCH_USEDITEMS_I_BOUGHT,
+    {
+      variables: {
+        search: "",
+        page: 1,
+      },
+    }
+  );
   const { data: buyCount } = useQuery(FETCH_USEDITEMS_COUNT_I_BOUGHT);
 
-  const { data: soldData } = useQuery(FETCH_USEDITEMS_I_SOLD);
+  const { data: soldData, refetch: refetchSoldData } = useQuery(
+    FETCH_USEDITEMS_I_SOLD,
+    {
+      variables: {
+        search: "",
+        page: 1,
+      },
+    }
+  );
   const { data: soldCount } = useQuery(FETCH_USEDITEMS_COUNT_I_SOLD);
 
-  const { data: pickedData } = useQuery(FETCH_USEDITEMS_I_PICKED);
+  const { data: pickedData, refetch: refetchPickedData } = useQuery(
+    FETCH_USEDITEMS_I_PICKED,
+    {
+      variables: {
+        search: "",
+        page: 1,
+      },
+    }
+  );
   const { data: pickedCount } = useQuery(FETCH_USEDITEMS_COUNT_I_PICKED);
 
+  const onChangeOnePage = () => {
+    setNowPage(1);
+  };
   return (
     <MypageMarketUI
       buyData={buyData}
@@ -27,6 +57,12 @@ export default function MypageMarket() {
       soldCount={soldCount}
       pickedData={pickedData}
       pickedCount={pickedCount}
+      nowPage={nowPage}
+      setNowPage={setNowPage}
+      refetchBuyData={refetchBuyData}
+      refetchSoldData={refetchSoldData}
+      refetchPickedData={refetchPickedData}
+      onChangeOnePage={onChangeOnePage}
     ></MypageMarketUI>
   );
 }

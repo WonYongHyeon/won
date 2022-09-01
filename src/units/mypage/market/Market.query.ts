@@ -3,9 +3,10 @@ import { gql } from "@apollo/client";
 export const FETCH_USEDITEMS_I_BOUGHT = gql`
   query fetchUseditemsIBought($search: String, $page: Int) {
     fetchUseditemsIBought(search: $search, page: $page) {
+      _id
       name
-      createdAt
       price
+      soldAt
     }
   }
 `;
@@ -19,8 +20,8 @@ export const FETCH_USEDITEMS_COUNT_I_BOUGHT = gql`
 export const FETCH_USEDITEMS_I_SOLD = gql`
   query fetchUseditemsISold($search: String, $page: Int) {
     fetchUseditemsISold(search: $search, page: $page) {
+      _id
       name
-      createdAt
       price
     }
   }
@@ -35,8 +36,8 @@ export const FETCH_USEDITEMS_COUNT_I_SOLD = gql`
 export const FETCH_USEDITEMS_I_PICKED = gql`
   query fetchUseditemsIPicked($search: String, $page: Int) {
     fetchUseditemsIPicked(search: $search, page: $page) {
+      _id
       name
-      createdAt
       price
     }
   }

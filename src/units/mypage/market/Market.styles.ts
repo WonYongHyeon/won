@@ -57,27 +57,32 @@ export const TableWrapper = styled.div`
   text-align: center;
   font-size: 16px;
   line-height: 35px;
+  cursor: pointer;
+
+  :hover {
+    background-color: #bdbdbd;
+  }
 `;
 
-export const TableNumber = styled.p`
+export const TableNumber = styled.div`
   width: 15%;
   height: 100%;
   border: 0px solid;
 `;
 
-export const TableTitle = styled.p`
+export const TableTitle = styled.div`
   width: 35%;
   height: 100%;
   border: 0px solid;
 `;
 
-export const TablePrice = styled.p`
+export const TablePrice = styled.div`
   width: 25%;
   height: 100%;
   border: 0px solid;
 `;
 
-export const TableHDate = styled.p`
+export const TableDate = styled.div`
   width: 25%;
   height: 100%;
   border: 0px solid;

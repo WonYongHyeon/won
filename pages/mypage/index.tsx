@@ -2,7 +2,8 @@ import { gql, useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
 import { Select } from "antd";
 import { useState } from "react";
-import MypageMarket from "../../src/units/mypage/market/market.container";
+import MypageMarket from "../../src/units/mypage/market/Market.container";
+import MypagePassword from "../../src/units/mypage/password/Password.container";
 
 const { Option } = Select;
 
@@ -68,6 +69,7 @@ const DivideLine = styled.div`
 const FETCH_USER_LOGGED_IN = gql`
   query fetchUserLoggedIn {
     fetchUserLoggedIn {
+      email
       name
       userPoint {
         amount
@@ -108,8 +110,10 @@ export default function MypagePage() {
           <Menu onClick={onClickMenu(2)}>포인트 내역</Menu>
           <Menu onClick={onClickMenu(3)}>비밀번호 변경</Menu>
         </MenuWrapper>
-
         {check === 1 && <MypageMarket></MypageMarket>}
+        {check === 3 && (
+          <MypagePassword email={data.fetchUserLoggedIn.email}></MypagePassword>
+        )}
       </Wrapper>
     </Body>
   );
