@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import { useState } from "react";
 import MypageMarketUI from "./Market.presenter";
 import {
+  FETCH_POINT_TRANSACTIONS,
   FETCH_USEDITEMS_COUNT_I_BOUGHT,
   FETCH_USEDITEMS_COUNT_I_PICKED,
   FETCH_USEDITEMS_COUNT_I_SOLD,
@@ -46,6 +47,14 @@ export default function MypageMarket() {
   );
   const { data: pickedCount } = useQuery(FETCH_USEDITEMS_COUNT_I_PICKED);
 
+  const { data, refetch } = useQuery(FETCH_POINT_TRANSACTIONS, {
+    variables: {
+      search: "",
+      page: 1,
+    },
+  });
+
+  console.log(data);
   const onChangeOnePage = () => {
     setNowPage(1);
   };
@@ -63,6 +72,8 @@ export default function MypageMarket() {
       refetchSoldData={refetchSoldData}
       refetchPickedData={refetchPickedData}
       onChangeOnePage={onChangeOnePage}
+      data={data}
+      refetch={refetch}
     ></MypageMarketUI>
   );
 }

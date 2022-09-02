@@ -48,3 +48,19 @@ export const FETCH_USEDITEMS_COUNT_I_PICKED = gql`
     fetchUseditemsCountIPicked
   }
 `;
+
+export const FETCH_POINT_TRANSACTIONS = gql`
+  query fetchPointTransactions($search: String, $page: Int) {
+    fetchPointTransactions(search: $search, page: $page) {
+      _id
+      status
+      statusDetail
+      createdAt
+      useditem {
+        name
+        price
+        createdAt
+      }
+    }
+  }
+`;
