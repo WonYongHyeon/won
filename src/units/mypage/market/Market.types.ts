@@ -74,6 +74,37 @@ export interface IMypageMarketUIProps {
       }>;
     }>
   >;
+  data: {
+    fetchPointTransactions: Array<{
+      _id: string;
+      status: string;
+      statusDetail: string;
+      createdAt: Date;
+      useditem: {
+        name: string;
+        price: string;
+        createdAt: string;
+      };
+    }>;
+  };
+
+  refetch: (
+    variables?: Partial<{ search: string; page: number }> | undefined
+  ) => Promise<
+    ApolloQueryResult<{
+      fetchPointTransactions: Array<{
+        _id: string;
+        status: string;
+        statusDetail: string;
+        createdAt: Date;
+        useditem: {
+          name: string;
+          price: string;
+          createdAt: string;
+        };
+      }>;
+    }>
+  >;
 
   onChangeOnePage: () => void;
 }

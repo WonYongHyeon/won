@@ -4,12 +4,13 @@ import { RecoilRoot } from "recoil";
 import Head from "next/head";
 import Layout from "../src/commons/layout";
 import ApolloSetting from "../src/commons/apolloSetting";
+import { AppProps } from "next/app";
 
-function MyApp({ Component, pageProps }: any) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>공구</title>
+        <title>중고마켓</title>
       </Head>
       <RecoilRoot>
         <ApolloSetting>
