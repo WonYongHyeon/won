@@ -26,9 +26,9 @@ export default function MypageMarketUI(props: IMypageMarketUIProps) {
                     10 * (props.nowPage - 1) -
                     index}
                 </S.TableNumber>
-                <S.TableTitle>{el.useditem.name}</S.TableTitle>
+                <S.TableTitle>{el.useditem?.name}</S.TableTitle>
                 <S.TablePrice>
-                  {el.useditem.price.toLocaleString()}원
+                  {el.useditem?.price.toLocaleString()}원
                 </S.TablePrice>
                 <S.TableDate>{el.status}</S.TableDate>
               </S.TableWrapper>

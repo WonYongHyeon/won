@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { UseFormRegister } from "react-hook-form";
 
 const Input = styled.input`
   width: 100%;
