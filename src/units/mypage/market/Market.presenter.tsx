@@ -10,41 +10,7 @@ export default function MypageMarketUI(props: IMypageMarketUIProps) {
   return (
     <S.Wrapper>
       <Tabs defaultActiveKey="1" size="large" onChange={props.onChangeOnePage}>
-        <TabPane tab="전체목록" key="1">
-          <S.TableHeaderWrapper>
-            <S.TableHeaderNumber>번호</S.TableHeaderNumber>
-            <S.TableHeaderTitle>물품명</S.TableHeaderTitle>
-            <S.TableHeaderPrice>가격</S.TableHeaderPrice>
-            <S.TableHeaderDate>구분</S.TableHeaderDate>
-          </S.TableHeaderWrapper>
-          {props.data?.fetchPointTransactions.map((el, index: number) => {
-            return (
-              <S.TableWrapper key={uuidv4()}>
-                <S.TableNumber>
-                  {props.buyCount?.fetchUseditemsCountIBought +
-                    props.soldCount?.fetchUseditemsCountISold -
-                    10 * (props.nowPage - 1) -
-                    index}
-                </S.TableNumber>
-                <S.TableTitle>{el.useditem?.name}</S.TableTitle>
-                <S.TablePrice>
-                  {el.useditem?.price.toLocaleString()}원
-                </S.TablePrice>
-                <S.TableDate>{el.status}</S.TableDate>
-              </S.TableWrapper>
-            );
-          })}
-          <Pagination
-            refetch={props.refetch}
-            number={
-              props.buyCount?.fetchUseditemsCountIBought +
-              props.soldCount?.fetchUseditemsCountISold
-            }
-            nowPage={props.nowPage}
-            setNowPage={props.setNowPage}
-          ></Pagination>
-        </TabPane>
-        <TabPane tab="구매목록" key="2">
+        <TabPane tab="구매목록" key="1">
           <S.TableHeaderWrapper>
             <S.TableHeaderNumber>번호</S.TableHeaderNumber>
             <S.TableHeaderTitle>물품명</S.TableHeaderTitle>
@@ -72,7 +38,7 @@ export default function MypageMarketUI(props: IMypageMarketUIProps) {
             setNowPage={props.setNowPage}
           ></Pagination>
         </TabPane>
-        <TabPane tab="판매목록" key="3">
+        <TabPane tab="판매목록" key="2">
           <S.TableHeaderWrapper>
             <S.TableHeaderNumber>번호</S.TableHeaderNumber>
             <S.TableHeaderTitle style={{ width: "50%" }}>
@@ -102,7 +68,7 @@ export default function MypageMarketUI(props: IMypageMarketUIProps) {
             setNowPage={props.setNowPage}
           ></Pagination>
         </TabPane>
-        <TabPane tab="찜목록" key="4">
+        <TabPane tab="찜목록" key="3">
           <S.TableHeaderWrapper>
             <S.TableHeaderNumber>번호</S.TableHeaderNumber>
             <S.TableHeaderTitle style={{ width: "50%" }}>
