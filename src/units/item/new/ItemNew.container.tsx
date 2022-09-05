@@ -155,6 +155,7 @@ export default function ItemNew(props: IProductNewProps) {
       setFileUrls([...props.fetchData?.fetchUseditem?.images]);
     }
     onChangeContents(props.fetchData?.fetchUseditem?.contents);
+    onChangeGifticon(1, props.fetchData?.fetchUseditem?.remarks);
   }, []);
 
   // useEffect(() => {

@@ -66,7 +66,7 @@ export default function ItemDetailUI(props: IItemDetailUIProps) {
         ) : (
           <S.Contents />
         )}
-        <S.Map id="mapDetail"></S.Map>
+        {/* <S.Map id="mapDetail"></S.Map> */}
         <S.ButtonWrapper>
           <S.Button onClick={props.onClickMoveItemListPage}>상품목록</S.Button>
           {props.loginUserId?.fetchUserLoggedIn._id ===
