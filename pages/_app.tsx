@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>중고마켓</title>
+        <title>기프티마켓</title>
       </Head>
       <RecoilRoot>
         <ApolloSetting>
