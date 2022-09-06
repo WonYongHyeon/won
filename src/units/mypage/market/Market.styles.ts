@@ -87,3 +87,38 @@ export const TableDate = styled.div`
   height: 100%;
   border: 0px solid;
 `;
+
+export const CustomModalWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+`;
+
+export const CustomModal = styled.div`
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+`;
+
+export const GifticonImage = styled.img`
+  width: 600px;
+`;
+
+export const KakaoLinkButton = styled.button`
+  background-color: black;
+  border: 0px solid;
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+  width: 200px;
+  height: 50px;
+`;

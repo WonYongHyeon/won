@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MypageMarketUI from "./Market.presenter";
 import {
   FETCH_POINT_TRANSACTIONS,
@@ -11,8 +11,15 @@ import {
   FETCH_USEDITEMS_I_SOLD,
 } from "./Market.query";
 
+declare const window: typeof globalThis & {
+  Kakao: any;
+};
+
 export default function MypageMarket() {
   const [nowPage, setNowPage] = useState(1);
+  const [gifticonImg, setGifticonImg] = useState("");
+  const [gifticonId, setGifticonId] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
 
   const { data: buyData, refetch: refetchBuyData } = useQuery(
     FETCH_USEDITEMS_I_BOUGHT,
@@ -50,6 +57,40 @@ export default function MypageMarket() {
   const onChangeOnePage = () => {
     setNowPage(1);
   };
+
+  const onClickBuyList = (id: string, imgUrl: string) => () => {
+    setGifticonImg(imgUrl);
+    setGifticonId(id);
+    setModalVisible(true);
+  };
+
+  const onClickModalCancel = () => {
+    setGifticonImg("");
+    setModalVisible(false);
+  };
+
+  const onClickShare = () => {
+    if (window.Kakao) {
+      const kakao = window.Kakao;
+
+      if (!kakao.isInitialized()) {
+        kakao.init("e9296fe33b397dd0a03600f2bea162bf");
+      }
+
+      kakao.Link.sendDefault({
+        objectType: "feed",
+        content: {
+          title: "구입하신 기프티콘입니다.",
+          imageUrl: `https://storage.googleapis.com/${gifticonImg}`,
+          link: {
+            mobileWebUrl: `http://localhost:3000/${gifticonId}`,
+            webUrl: `http://localhost:3000/${gifticonId}`,
+          },
+        },
+      });
+    }
+  };
+
   return (
     <MypageMarketUI
       buyData={buyData}
@@ -64,6 +105,11 @@ export default function MypageMarket() {
       refetchSoldData={refetchSoldData}
       refetchPickedData={refetchPickedData}
       onChangeOnePage={onChangeOnePage}
+      onClickBuyList={onClickBuyList}
+      gifticonImg={gifticonImg}
+      modalVisible={modalVisible}
+      onClickModalCancel={onClickModalCancel}
+      onClickShare={onClickShare}
     ></MypageMarketUI>
   );
 }

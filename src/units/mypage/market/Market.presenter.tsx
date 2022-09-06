@@ -4,11 +4,15 @@ import { Tabs } from "antd";
 import { IMypageMarketUIProps } from "./Market.types";
 import { getDate } from "../../../commons/lib/utils";
 import Pagination from "../../../commons/pagination/pagination.container";
+import Head from "next/head";
 const { TabPane } = Tabs;
 
 export default function MypageMarketUI(props: IMypageMarketUIProps) {
   return (
     <S.Wrapper>
+      <Head>
+        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+      </Head>
       <Tabs defaultActiveKey="1" size="large" onChange={props.onChangeOnePage}>
         <TabPane tab="구매목록" key="1">
           <S.TableHeaderWrapper>
@@ -19,7 +23,10 @@ export default function MypageMarketUI(props: IMypageMarketUIProps) {
           </S.TableHeaderWrapper>
           {props.buyData?.fetchUseditemsIBought.map((el, index: number) => {
             return (
-              <S.TableWrapper key={uuidv4()}>
+              <S.TableWrapper
+                key={uuidv4()}
+                onClick={props.onClickBuyList(el._id, el.remarks)}
+              >
                 <S.TableNumber>
                   {props.buyCount?.fetchUseditemsCountIBought -
                     10 * (props.nowPage - 1) -
@@ -99,6 +106,18 @@ export default function MypageMarketUI(props: IMypageMarketUIProps) {
           ></Pagination>
         </TabPane>
       </Tabs>
+      {props.modalVisible && (
+        <S.CustomModalWrapper onClick={props.onClickModalCancel}>
+          <S.CustomModal>
+            <S.KakaoLinkButton onClick={props.onClickShare}>
+              카카오로 공유하기
+            </S.KakaoLinkButton>
+            <S.GifticonImage
+              src={`https://storage.googleapis.com/${props.gifticonImg}`}
+            />
+          </S.CustomModal>
+        </S.CustomModalWrapper>
+      )}
     </S.Wrapper>
   );
 }

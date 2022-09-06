@@ -8,6 +8,7 @@ export interface IMypageMarketUIProps {
       price: number;
       soldAt: Date;
       _id: string;
+      remarks: string;
     }>;
   };
   buyCount: {
@@ -20,6 +21,7 @@ export interface IMypageMarketUIProps {
       price: number;
       soldAt: Date;
       _id: string;
+      remarks: string;
     }>;
   };
   soldCount: {
@@ -76,4 +78,9 @@ export interface IMypageMarketUIProps {
   >;
 
   onChangeOnePage: () => void;
+  onClickBuyList: (id: string, imgUrl: string) => () => void;
+  gifticonImg: string;
+  modalVisible: boolean;
+  onClickModalCancel: () => void;
+  onClickShare: () => void;
 }
