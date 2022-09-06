@@ -1,8 +1,11 @@
+import { FieldValues, UseFormGetValues } from "react-hook-form";
+
 export interface IProductNewUIProps {
   fetchData: any;
   isEdit: boolean;
   register: any;
   handleSubmit: any;
+  getValues: UseFormGetValues<FieldValues>;
   isActive: boolean;
   onClickSubmit: (data: any) => void;
   onClickEdit: (data: any) => void;

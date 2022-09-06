@@ -4,7 +4,6 @@ import { Tabs } from "antd";
 import Pagination from "../../../commons/pagination/pagination.container";
 import { IMypagePointUIProps } from "./Point.types";
 import { getDate } from "../../../commons/lib/utils";
-import Head from "next/head";
 const { TabPane } = Tabs;
 
 export default function MypagePointUI(props: IMypagePointUIProps) {
@@ -100,7 +99,6 @@ export default function MypagePointUI(props: IMypagePointUIProps) {
                         10 * (props.nowPage - 1) -
                         index}
                     </S.TableNumber>
-                    <S.TableTitle>{el.useditem.name}</S.TableTitle>
                     <S.TablePrice style={{ width: "50%" }}>
                       {el.amount.toLocaleString()} P
                     </S.TablePrice>

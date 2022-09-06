@@ -50,7 +50,6 @@ const HeaderEnableArea = styled.div`
 `;
 
 const LogoText = styled.div`
-  width: 100px;
   height: 100%;
   font-size: 30px;
   color: white;
@@ -175,7 +174,7 @@ export default function LayoutHeader() {
   return (
     <Wrapper>
       <HeaderEnableArea>
-        <LogoText onClick={onClickLogo}>공구</LogoText>
+        <LogoText onClick={onClickLogo}>기프티마켓</LogoText>
         <MenuWrapper>
           <MenuHeaderText>게시판</MenuHeaderText>
           {data ? (
@@ -197,7 +196,7 @@ export default function LayoutHeader() {
           <MenuWrapper>
             <MenuColumn>
               <MenuText onClick={onClickReview}>리뷰게시판</MenuText>
-              <MenuText onClick={onClickMarkets}>중고마켓게시판</MenuText>
+              <MenuText onClick={onClickMarkets}>기프티콘마켓</MenuText>
             </MenuColumn>
             <MenuColumn>
               {data ? (

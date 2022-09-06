@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client";
 import { AxiosError } from "axios";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
-import { ChangeEvent, useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 import { UseFormGetValues } from "react-hook-form";
 import { UPLOAD_FILE } from "../UploadImage/UploadImage.query";
 import { IReviewData } from "../../units/review/new/ReviewNew.types";
@@ -13,7 +13,12 @@ const ReactQuill = dynamic(
     return function comp({ forwardedRef, ...props }: any) {
       return (
         <RQ
-          style={{ width: "100%", height: "500px", marginBottom: "60px" }}
+          style={{
+            width: "100%",
+            height: "400px",
+            marginBottom: "60px",
+            backgroundColor: "white",
+          }}
           ref={forwardedRef}
           {...props}
         />

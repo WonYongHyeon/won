@@ -19,7 +19,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   padding: 60px 103px 100px 101px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-  background-color: #f7f6ee;
+  /* background-color: #f7f6ee; */
 `;
 
 export const Title = styled.div`

@@ -50,14 +50,14 @@ export default function ItemListUI(props: IItemListUIProps) {
 
                 <S.MainContentsWrapper>
                   <S.Name>{el.name}</S.Name>
-                  <S.Remarks>{el.remarks}</S.Remarks>
+                  {/* <S.Remarks>{el.remarks}</S.Remarks> */}
                   <S.SellerPickedWrapper>
                     <S.ProfileImage src="/img/profile.png" />
                     <S.SellerName>{el.seller.name}</S.SellerName>
                     <S.PickedImage src="/img/picked.svg" /> {el.pickedCount}
                   </S.SellerPickedWrapper>
                 </S.MainContentsWrapper>
-                <S.Price>{el.price}원</S.Price>
+                <S.Price>{el.price.toLocaleString()} 원</S.Price>
               </S.ItemWrapper>
             );
           })}
@@ -67,7 +67,11 @@ export default function ItemListUI(props: IItemListUIProps) {
         <S.TodayItemListWrapper>
           {props.today.map((el: any) => {
             return (
-              <S.TodayItemWrapper key={uuidv4()}>
+              <S.TodayItemWrapper
+                id={el._id}
+                key={uuidv4()}
+                onClick={props.onClickItem(el)}
+              >
                 {el.images.length === 0 || el.images[0] === "" ? (
                   <S.TodayItemImage src="/img/no_image_160.webp" />
                 ) : (
@@ -77,7 +81,9 @@ export default function ItemListUI(props: IItemListUIProps) {
                 )}
                 <S.TodayItemTextWrapper>
                   <S.TodayItemName>{el.name}</S.TodayItemName>
-                  <S.TodayItemRemarks>{el.remarks}</S.TodayItemRemarks>
+                  <S.TodayItemPrice>
+                    {el.price.toLocaleString()} 원
+                  </S.TodayItemPrice>
                 </S.TodayItemTextWrapper>
               </S.TodayItemWrapper>
             );

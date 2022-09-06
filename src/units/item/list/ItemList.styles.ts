@@ -149,16 +149,14 @@ export const RightLeftWrapper = styled.div`
 
 export const TodayItemListWrapper = styled.div`
   width: 200px;
-
   border-radius: 20px;
-
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
   padding: 0px 10px;
   margin-top: 100px;
   margin-left: 50px;
   display: inline-block;
   position: sticky;
-  top: 30px;
+  top: 200px;
 `;
 
 export const TodayItemWrapper = styled.div`
@@ -171,6 +169,11 @@ export const TodayItemWrapper = styled.div`
   padding: 10px;
   border-radius: 20px;
   margin: 20px 0px;
+  cursor: pointer;
+  :hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+  }
 `;
 
 export const TodayItemTextWrapper = styled.div`
@@ -197,7 +200,7 @@ export const TodayItemName = styled.div`
   word-break: break-all;
 `;
 
-export const TodayItemRemarks = styled.div`
+export const TodayItemPrice = styled.div`
   font-size: 12px;
   width: 100px;
   padding: 10px;

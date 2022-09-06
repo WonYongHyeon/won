@@ -47,14 +47,6 @@ export default function MypageMarket() {
   );
   const { data: pickedCount } = useQuery(FETCH_USEDITEMS_COUNT_I_PICKED);
 
-  const { data, refetch } = useQuery(FETCH_POINT_TRANSACTIONS, {
-    variables: {
-      search: "",
-      page: 1,
-    },
-  });
-
-  console.log(data);
   const onChangeOnePage = () => {
     setNowPage(1);
   };
@@ -72,8 +64,6 @@ export default function MypageMarket() {
       refetchSoldData={refetchSoldData}
       refetchPickedData={refetchPickedData}
       onChangeOnePage={onChangeOnePage}
-      data={data}
-      refetch={refetch}
     ></MypageMarketUI>
   );
 }
