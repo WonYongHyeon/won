@@ -1,6 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Swal from "sweetalert2";
@@ -21,7 +20,7 @@ export default function ItemDetail(props: IItemDetailProps) {
   const router = useRouter();
 
   const { data: loginUserId } = useQuery(FETCH_USER_LOGGED_IN);
-
+  const { data } = useQuery(FETCH_USER_LOGGED_IN);
   const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
   const [deleteUseditem] = useMutation(DELETE_USEDITEM);
   const [createPointTransactionOfBuyingAndSelling] = useMutation(
@@ -62,6 +61,14 @@ export default function ItemDetail(props: IItemDetailProps) {
   };
 
   const onClickBuyItem = async () => {
+    if (!data?.fetchUserLoggedIn) {
+      Swal.fire({
+        icon: "error",
+        text: "로그인 후에 이용가능합니다.",
+      });
+      return;
+    }
+
     Swal.fire({
       icon: "info",
       text: `해당 물품의 가격은 ${props.data.fetchUseditem.price}원 입니다.
@@ -78,7 +85,7 @@ export default function ItemDetail(props: IItemDetailProps) {
           icon: "success",
           text: "결제가 완료되었습니다.",
         }).then(() => {
-          router.push("/markets");
+          router.push("/mypage");
         });
       } else {
         Swal.fire({

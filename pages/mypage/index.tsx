@@ -4,6 +4,7 @@ import { Select } from "antd";
 import Head from "next/head";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { useAuth } from "../../src/commons/hooks/useAuth";
 import MypageMarket from "../../src/units/mypage/market/Market.container";
 import MypagePassword from "../../src/units/mypage/password/Password.container";
 import MypagePoint from "../../src/units/mypage/point/Point.container";
@@ -94,14 +95,20 @@ declare const window: typeof globalThis & {
 };
 
 export default function MypagePage() {
+  useAuth();
   const { data, loading } = useQuery(FETCH_USER_LOGGED_IN);
+
   const [createPointTransactionOfLoading] = useMutation(
     CREATE_POINT_TRANSACTION_OF_LOADING
   );
   const [check, setCheck] = useState(1);
+  const [charge, setCharge] = useState(1000);
 
   const onClickMenu = (check: number) => () => {
     setCheck(check);
+  };
+  const onChangeCharge = (value: unknown) => {
+    setCharge(Number(value));
   };
 
   const onClickCharge = () => {
@@ -114,7 +121,7 @@ export default function MypagePage() {
         pg: "html5_inicis",
         pay_method: "card",
         name: "포인트 충전",
-        amount: 100,
+        amount: charge,
       },
       async (rsp: any) => {
         if (rsp.success) {
@@ -169,7 +176,7 @@ export default function MypagePage() {
           <Name>{data?.fetchUserLoggedIn.name} 님</Name>
           <Point>포인트 : {data?.fetchUserLoggedIn.userPoint.amount} 원</Point>
           <PointChargeWrapper>
-            <PointChoice defaultValue="1000">
+            <PointChoice defaultValue="1000" onChange={onChangeCharge}>
               <Option value="1000">1000</Option>
               <Option value="5000">5000</Option>
               <Option value="10000">10000</Option>
