@@ -62,7 +62,6 @@ export default function ItemList() {
     }
 
     setToday(temp);
-    console.log(temp);
     sessionStorage.setItem("today", JSON.stringify(temp));
 
     router.push(`/markets/${el._id}`);

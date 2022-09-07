@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from "uuid";
 import Textarea01 from "../../../../../commons/textarea/01";
 
 export default function ItemQuestionAnswerWriteUI(props: any) {
-  console.log(props.defaultContents);
   return (
     <S.Body>
       <S.Wrapper>

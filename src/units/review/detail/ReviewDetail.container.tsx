@@ -73,8 +73,6 @@ export default function ReviewDetail() {
     router.push(`/review/${router.query.id}/edit`);
   };
 
-  console.log(data);
-
   return (
     <BoardDetailUI
       data={data}

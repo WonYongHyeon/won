@@ -26,7 +26,6 @@ export default function ItemQuestionList(props: any) {
   );
 
   const onClickQuestionEditButton = (event: any) => {
-    console.log("edit 클릭");
     setEditId(event.target.id);
   };
 
@@ -50,7 +49,6 @@ export default function ItemQuestionList(props: any) {
 
   const loadFunc = () => {
     if (!data) return;
-    console.log(data);
 
     fetchMore({
       variables: {

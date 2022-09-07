@@ -49,8 +49,6 @@ export default function ReviewNew(props: IReviewNewProps) {
   };
 
   const onClickRegistrationButton = async (data: any) => {
-    console.log(data);
-    console.log(formState.isValid);
     if (formState.isValid) {
       const result = await createBoard({
         variables: {

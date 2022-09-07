@@ -69,7 +69,6 @@ export default function ReactQuillContainer(props: IProps) {
     // 파일이 input 태그에 담기면 실행 될 함수
     input.onchange = async () => {
       const file = input.files;
-      console.log(file);
 
       if (file !== null) {
         formData.append("image", file[0]);
