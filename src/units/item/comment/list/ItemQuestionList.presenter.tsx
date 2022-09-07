@@ -17,7 +17,6 @@ export default function ItemQuestionListUI(props: any) {
       {props.data?.fetchUseditemQuestions.map((item: any) => {
         return (
           <S.QuestionListWrapper key={uuidv4()}>
-            {console.log(item.contents)}
             {props.editId === item._id ? (
               <ItemQuestionWrite
                 refetch={props.refetch}

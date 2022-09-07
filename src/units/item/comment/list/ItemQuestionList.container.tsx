@@ -1,6 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import ItemQuestionListUI from "./ItemQuestionList.presenter";
 import {
@@ -22,7 +21,6 @@ export default function ItemQuestionList(props: any) {
     {
       variables: {
         useditemId: props.useditemId,
-        page: 1,
       },
     }
   );
@@ -52,17 +50,17 @@ export default function ItemQuestionList(props: any) {
 
   const loadFunc = () => {
     if (!data) return;
+    console.log(data);
 
     fetchMore({
       variables: {
         page: Math.ceil(data.fetchUseditemQuestions.length / 10) + 1,
+        useditemId: props.useditemId,
       },
+
       updateQuery: (prev, { fetchMoreResult }) => {
-        console.log(fetchMoreResult);
-        if (!fetchMoreResult.fetchUseditemQuestions) {
-          return {
-            fetchUseditemQuestions: [...prev.fetchUseditemQuestions],
-          };
+        if (!fetchMoreResult) {
+          return prev;
         }
         return {
           fetchUseditemQuestions: [
@@ -73,6 +71,7 @@ export default function ItemQuestionList(props: any) {
       },
     });
   };
+
   return (
     <>
       {loading ? (
