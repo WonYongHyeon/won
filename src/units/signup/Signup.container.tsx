@@ -19,11 +19,10 @@ export default function Signup() {
   const router = useRouter();
   const [createUser] = useMutation(CREATE_USER);
 
-  const { register, handleSubmit, formState, setValue, trigger, watch } =
-    useForm<IFormData>({
-      resolver: yupResolver(schema),
-      mode: "onChange",
-    });
+  const { register, handleSubmit, setValue, trigger } = useForm<IFormData>({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
 
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
     setValue("email", event.target.value);

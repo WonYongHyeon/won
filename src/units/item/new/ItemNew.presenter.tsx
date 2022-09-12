@@ -36,7 +36,7 @@ export default function ProductNewUI(props: IProductNewUIProps) {
           ></Input02>
           <S.InputText>상품 설명</S.InputText>
           <ReactQuillContainer
-            getValues={props.getValues}
+            content={props.getValues("contents") || ""}
             onChangeContent={props.onChangeContents}
           ></ReactQuillContainer>
           <>
@@ -51,16 +51,14 @@ export default function ProductNewUI(props: IProductNewUIProps) {
             </S.ImageButtonWrapper>
             <S.InputText>사진첨부</S.InputText>
             <S.ImageButtonWrapper>
-              {new Array(props.fileUrls.length + 1)
-                .fill(1)
-                .map((data, index) => (
-                  <UploadImage
-                    key={uuidv4()}
-                    index={index}
-                    onChangeFiles={props.onChangeFiles}
-                    fileUrls={props.fileUrls}
-                  />
-                ))}
+              {new Array(props.fileUrls.length + 1).fill(1).map((_, index) => (
+                <UploadImage
+                  key={uuidv4()}
+                  index={index}
+                  onChangeFiles={props.onChangeFiles}
+                  fileUrls={props.fileUrls}
+                />
+              ))}
             </S.ImageButtonWrapper>
           </>
           {props.isEdit ? (

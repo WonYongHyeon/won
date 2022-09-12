@@ -53,13 +53,7 @@ export const FETCH_BOARD = gql`
       contents
       likeCount
       dislikeCount
-      youtubeUrl
       createdAt
-      boardAddress {
-        zipcode
-        address
-        addressDetail
-      }
       images
     }
   }

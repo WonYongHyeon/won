@@ -1,7 +1,7 @@
 import Pagination from "./pagination/pagination.container";
 import * as S from "./Review.styles";
 import { v4 as uuidv4 } from "uuid";
-import { IReviewListUIProps } from "./Review.types";
+import { IReview, IReviewListUIProps } from "./Review.types";
 import { getDate } from "../../../commons/lib/utils";
 import DatePicker from "../../../commons/datepicker";
 
@@ -34,7 +34,7 @@ export default function ReviewListUI(props: IReviewListUIProps) {
             <S.ListTitleWriter>작성자</S.ListTitleWriter>
             <S.ListTitleDate>날짜</S.ListTitleDate>
           </S.ListTitleRow>
-          {props.review?.fetchBoards.map((item: any, index: number) => (
+          {props.review?.fetchBoards.map((item: IReview, index: number) => (
             <S.ListRow
               key={uuidv4()}
               onClick={props.onClickReview}

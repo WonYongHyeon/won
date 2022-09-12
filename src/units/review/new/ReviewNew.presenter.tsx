@@ -72,7 +72,7 @@ export default function ReviewNewUI(props: IReviewWriteUIProps) {
             <ContentsWrapper>
               <InputText>내용</InputText>
               <ReactQuillContainer
-                getValues={props.getValues}
+                content={props.getValues("contents") || ""}
                 onChangeContent={props.onChangeContents}
               ></ReactQuillContainer>
             </ContentsWrapper>

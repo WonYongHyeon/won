@@ -10,7 +10,7 @@ export interface IFormData {
 export interface ISignupUIProps {
   register: UseFormRegister<IFormData>;
   handleSubmit: UseFormHandleSubmit<IFormData>;
-  onClickSignup: (data: IFormData) => void;
+  onClickSignup: (data: IFormData) => Promise<void>;
   onClickCancel: () => void;
   onChangeEmail: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;

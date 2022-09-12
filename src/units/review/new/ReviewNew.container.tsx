@@ -3,7 +3,7 @@ import { NextRouter, useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
 import { CREATE_BOARD, UPDATE_BOARD } from "./ReviewNew.queries";
 import ReviewNewUI from "./ReviewNew.presenter";
-import { IReviewData, IReviewNewProps } from "./ReviewNew.types";
+import { IData, IReviewNewProps } from "./ReviewNew.types";
 import { Modal } from "antd";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
@@ -18,21 +18,13 @@ const schema = yup.object({
 });
 
 export default function ReviewNew(props: IReviewNewProps) {
-  let isOk: boolean = false;
   const router: NextRouter = useRouter();
 
-  const {
-    register,
-    handleSubmit,
-    formState,
-    setValue,
-    trigger,
-    getValues,
-    watch,
-  } = useForm<IReviewData>({
-    resolver: yupResolver(schema),
-    mode: "onChange",
-  });
+  const { register, handleSubmit, formState, setValue, trigger, getValues } =
+    useForm<IData>({
+      resolver: yupResolver(schema),
+      mode: "onChange",
+    });
 
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
@@ -40,15 +32,11 @@ export default function ReviewNew(props: IReviewNewProps) {
   const [fileUrls, setFileUrls] = useState<string[]>([]);
 
   const onChangeContents = (value: string) => {
-    // setContents(event.target.value);
-    // if (event.target.value !== "") {
-    //   setContentsError("");
-    // }
     setValue("contents", value === "<p><br></p>" ? "" : value);
     trigger("contents");
   };
 
-  const onClickRegistrationButton = async (data: any) => {
+  const onClickRegistrationButton = async (data: IData) => {
     if (formState.isValid) {
       const result = await createBoard({
         variables: {
@@ -73,16 +61,7 @@ export default function ReviewNew(props: IReviewNewProps) {
   };
 
   // 수정하기 버튼
-  const onClickEdit = async (data: any) => {
-    isOk = true;
-
-    // if (!title && !contents) {
-    //   Modal.error({
-    //     content: "수정한 내용이 없습니다.",
-    //   });
-    //   return;
-    // }
-
+  const onClickEdit = async (data: IData) => {
     if (!data.password) {
       Modal.error({
         content: "비밀번호가 필요합니다.",
@@ -91,27 +70,25 @@ export default function ReviewNew(props: IReviewNewProps) {
     }
 
     try {
-      if (isOk) {
-        const result = await updateBoard({
-          variables: {
-            updateBoardInput: {
-              title: data.title,
-              contents: data.contents,
-              images: fileUrls,
-            },
-            password: data.password,
-            boardId: router.query.id,
+      const result = await updateBoard({
+        variables: {
+          updateBoardInput: {
+            title: data.title,
+            contents: data.contents,
+            images: fileUrls,
           },
-        });
-        Swal.fire({
-          icon: "success",
-          text: "리뷰가 수정되었습니다.",
-        }).then((rsp) => {
-          if (rsp.isConfirmed === true) {
-            router.push(`/review/${result.data?.updateBoard._id}`);
-          }
-        });
-      }
+          password: data.password,
+          boardId: router.query.id,
+        },
+      });
+      Swal.fire({
+        icon: "success",
+        text: "리뷰가 수정되었습니다.",
+      }).then((rsp) => {
+        if (rsp.isConfirmed === true) {
+          router.push(`/review/${result.data?.updateBoard._id}`);
+        }
+      });
     } catch (error: any) {
       Swal.fire({
         icon: "error",
@@ -147,7 +124,6 @@ export default function ReviewNew(props: IReviewNewProps) {
       onClickRegistrationButton={onClickRegistrationButton}
       onClickEdit={onClickEdit}
       isEdit={props.isEdit}
-      isOk={isOk}
       data={props.data}
       onChangeFiles={onChangeFiles}
       fileUrls={fileUrls}

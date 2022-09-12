@@ -3,12 +3,7 @@ import { AxiosError } from "axios";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 import { useMemo, useRef } from "react";
-import { UseFormGetValues } from "react-hook-form";
 import { UPLOAD_FILE } from "../UploadImage/UploadImage.query";
-
-export interface IData {
-  contents: string;
-}
 
 const ReactQuill = dynamic(
   async () => {
@@ -49,7 +44,7 @@ const formats = [
 ];
 
 interface IProps {
-  getValues: UseFormGetValues<IData>;
+  content: string;
   onChangeContent: (value: string) => void;
 }
 
@@ -141,7 +136,7 @@ export default function ReactQuillContainer(props: IProps) {
       placeholder="본문을 입력하세요..."
       modules={modules}
       formats={formats}
-      value={props.getValues("contents") || ""}
+      value={props.content}
       onChange={props.onChangeContent}
     />
   );

@@ -13,33 +13,24 @@ export interface IData {
 
 export interface IFetchData {
   fetchBoard: {
-    writer: string;
+    _id: string;
     title: string;
+    writer: string;
     contents: string;
-    images: string[];
+    createdAt: Date;
+    likeCount: number;
+    dislikeCount: number;
+    images: Array<string>;
   };
 }
 
 export interface IReviewNewProps {
   isEdit: boolean;
-  data?: any;
-}
-
-export interface IMyVariables {
-  number?: number;
-  writer?: string;
-  title?: string;
-  contents?: string;
-  boardAddress?: {
-    zipcode?: number;
-    address?: string;
-    addressDetail?: string;
-  };
+  data: IFetchData;
 }
 
 export interface IReviewWriteUIProps {
   isEdit: boolean;
-  isOk: boolean;
   data: IFetchData;
   fileUrls: string[];
   register: UseFormRegister<IData>;
@@ -47,7 +38,7 @@ export interface IReviewWriteUIProps {
   getValues: UseFormGetValues<IData>;
 
   onChangeContents: (value: string) => void;
-  onClickRegistrationButton: (data: any) => Promise<void>;
-  onClickEdit: (data: any) => Promise<void>;
+  onClickRegistrationButton: (data: IData) => Promise<void>;
+  onClickEdit: (data: IData) => Promise<void>;
   onChangeFiles: (index: number, url: string) => void;
 }

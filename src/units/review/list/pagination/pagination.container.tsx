@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import PaginationUI from "./pagination.presenter";
 import { IPaginationProps } from "./pagination.types";
 
@@ -9,10 +9,10 @@ export default function Pagination(props: IPaginationProps) {
   const isActivePrev = start === 1;
   const isActiveNext = props.number?.fetchBoardsCount - (start - 1) * 10 <= 100;
 
-  const onClickPageMove = (event: any) => {
-    props.setNowPage(Number(event.target.id));
+  const onClickPageMove = (event: MouseEvent<HTMLButtonElement>) => {
+    props.setNowPage(Number(event.currentTarget.id));
     props.refetch({
-      page: Number(event.target.id),
+      page: Number(event.currentTarget.id),
     });
   };
 
