@@ -4,7 +4,7 @@ import {
   UseFormRegister,
 } from "react-hook-form";
 
-export interface IReviewData {
+export interface IData {
   writer?: string;
   title?: string;
   password?: string;
@@ -42,9 +42,9 @@ export interface IReviewWriteUIProps {
   isOk: boolean;
   data: IFetchData;
   fileUrls: string[];
-  register: UseFormRegister<IReviewData>;
-  handleSubmit: UseFormHandleSubmit<IReviewData>;
-  getValues: UseFormGetValues<IReviewData>;
+  register: UseFormRegister<IData>;
+  handleSubmit: UseFormHandleSubmit<IData>;
+  getValues: UseFormGetValues<IData>;
 
   onChangeContents: (value: string) => void;
   onClickRegistrationButton: (data: any) => Promise<void>;

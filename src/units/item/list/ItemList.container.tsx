@@ -3,14 +3,7 @@ import { NextRouter, useRouter } from "next/router";
 import { useState, ChangeEvent, useEffect } from "react";
 import ItemListUI from "./ItemList.presenter";
 import { FETCH_USEDITEMS } from "./ItemList.queries";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { useForm } from "react-hook-form";
 import _ from "lodash";
-
-const schema = yup.object({
-  search: yup.string(),
-});
 
 export default function ItemList() {
   const router: NextRouter = useRouter();

@@ -1,11 +1,23 @@
 import { ChangeEvent } from "react";
 
+export interface IData {
+  _id: string;
+  name: string;
+  remarks: string;
+  price: number;
+  images: Array<string>;
+  pickedCount: number;
+  seller: {
+    name: string;
+  };
+}
+
 export interface IItemListUIProps {
-  // register: any;
-  // handleSubmit: any;
   onChangeSearch: (event: ChangeEvent<HTMLInputElement>) => void;
-  today: any;
-  data: any;
+  today: Array<string>;
+  data: {
+    fetchUseditems: Array<IData>;
+  };
   loadFunc: () => void;
   onClickSearch: () => void;
   onClickWriteButton: () => void;

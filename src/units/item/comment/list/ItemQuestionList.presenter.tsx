@@ -5,8 +5,9 @@ import ItemQuestionAnswersList from "../answer/list/ItemQuestionAnswerList.conta
 import ItemQuestionAnswerWrite from "../answer/write/ItemQuestionAnswerWrite.container";
 import ItemQuestionWrite from "../write/ItemQuestionWrite.container";
 import { getDate } from "../../../../commons/lib/utils";
+import { IData, IItemQuestionListUIProps } from "./ItemQuestionList.types";
 
-export default function ItemQuestionListUI(props: any) {
+export default function ItemQuestionListUI(props: IItemQuestionListUIProps) {
   return (
     <InfiniteScroll
       pageStart={0}
@@ -14,7 +15,7 @@ export default function ItemQuestionListUI(props: any) {
       hasMore={true}
       style={{ width: "100%" }}
     >
-      {props.data?.fetchUseditemQuestions.map((item: any) => {
+      {props.data?.fetchUseditemQuestions.map((item: IData) => {
         return (
           <S.QuestionListWrapper key={uuidv4()}>
             {props.editId === item._id ? (
@@ -70,8 +71,6 @@ export default function ItemQuestionListUI(props: any) {
             <S.DivideLine></S.DivideLine>
             <ItemQuestionAnswersList
               useditemQuestionId={item._id}
-              itemUserId={item.user._id}
-              userId={props.userId}
             ></ItemQuestionAnswersList>
             {props.itemId === item._id && (
               <ItemQuestionAnswerWrite

@@ -7,10 +7,10 @@ export interface IForm {
 
 export interface IItemQuestionWriteProps {
   useditemQuestionId: string;
-  useditemQuestionAnswerId: string;
+  useditemQuestionAnswerId?: string;
   setItemId: Dispatch<SetStateAction<string>>;
-  setEditAnswerId: Dispatch<SetStateAction<string>>;
-  defaultContents: string;
+  setEditAnswerId?: Dispatch<SetStateAction<string>>;
+  defaultContents?: string;
 }
 
 export interface IItemQuestionWriteUIProps {

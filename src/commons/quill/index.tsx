@@ -5,7 +5,10 @@ import dynamic from "next/dynamic";
 import { useMemo, useRef } from "react";
 import { UseFormGetValues } from "react-hook-form";
 import { UPLOAD_FILE } from "../UploadImage/UploadImage.query";
-import { IReviewData } from "../../units/review/new/ReviewNew.types";
+
+export interface IData {
+  contents: string;
+}
 
 const ReactQuill = dynamic(
   async () => {
@@ -46,7 +49,7 @@ const formats = [
 ];
 
 interface IProps {
-  getValues: UseFormGetValues<IReviewData>;
+  getValues: UseFormGetValues<IData>;
   onChangeContent: (value: string) => void;
 }
 

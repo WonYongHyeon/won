@@ -1,4 +1,4 @@
-import { IItemListUIProps } from "./ItemList.types";
+import { IData, IItemListUIProps } from "./ItemList.types";
 import * as S from "./ItemList.styles";
 import { v4 as uuidv4 } from "uuid";
 import InfiniteScroll from "react-infinite-scroller";
@@ -33,7 +33,7 @@ export default function ItemListUI(props: IItemListUIProps) {
           style={{ width: "100%" }}
           useWindow={true}
         >
-          {props.data?.fetchUseditems.map((el: any) => {
+          {props.data?.fetchUseditems.map((el: IData) => {
             return (
               <S.ItemWrapper
                 id={el._id}

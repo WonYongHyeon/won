@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import ItemQuestionListUI from "./ItemQuestionList.presenter";
 import {
   DELETE_USEDITEM_QUESTION,
@@ -9,7 +9,7 @@ import {
 } from "./ItemQuestionList.queries";
 import { IItemQuestionListProps } from "./ItemQuestionList.types";
 
-export default function ItemQuestionList(props: any) {
+export default function ItemQuestionList(props: IItemQuestionListProps) {
   const [itemId, setItemId] = useState("");
   const [editId, setEditId] = useState("");
 
@@ -25,17 +25,17 @@ export default function ItemQuestionList(props: any) {
     }
   );
 
-  const onClickQuestionEditButton = (event: any) => {
-    setEditId(event.target.id);
+  const onClickQuestionEditButton = (event: MouseEvent<HTMLImageElement>) => {
+    setEditId(event.currentTarget.id);
   };
 
-  const onClickQuestionDeleteButton = (event: any) => {
+  const onClickQuestionDeleteButton = (event: MouseEvent<HTMLImageElement>) => {
     Modal.warning({
       content: "정말로 삭제하시겠습니까?",
       async onOk() {
         await deleteUseditemQuestion({
           variables: {
-            useditemQuestionId: event.target.id,
+            useditemQuestionId: event.currentTarget.id,
           },
         });
         refetch();
@@ -43,8 +43,8 @@ export default function ItemQuestionList(props: any) {
     });
   };
 
-  const onClickAnswerButton = (event: any) => {
-    setItemId(event.target.id);
+  const onClickAnswerButton = (event: MouseEvent<HTMLButtonElement>) => {
+    setItemId(event.currentTarget.id);
   };
 
   const loadFunc = () => {

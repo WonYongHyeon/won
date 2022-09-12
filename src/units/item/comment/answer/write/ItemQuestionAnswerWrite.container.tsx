@@ -12,7 +12,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
 import ItemQuestionWriteUI from "./ItemQuestionAnswerWrite.presenter";
-import { useRouter } from "next/router";
 
 const schema = yup.object({
   contents: yup.string().required("필수 입력 사항입니다."),
@@ -55,13 +54,13 @@ export default function ItemQuestionAnswerWrite(
         useditemQuestionAnswerId: props.useditemQuestionAnswerId,
       },
     });
-    props.setEditAnswerId("");
+    if (props.setEditAnswerId) props.setEditAnswerId("");
   };
 
   return (
     <>
       <ItemQuestionWriteUI
-        defaultContents={props.defaultContents}
+        defaultContents={props.defaultContents || ""}
         register={register}
         handleSubmit={handleSubmit}
         onClickSubmitButton={onClickSubmitButton}
