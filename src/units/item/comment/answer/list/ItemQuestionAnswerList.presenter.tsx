@@ -3,8 +3,11 @@ import { v4 as uuidv4 } from "uuid";
 import * as S from "./ItemQuestionAnswerList.styles";
 import ItemQuestionAnswerWrite from "../write/ItemQuestionAnswerWrite.container";
 import { getDate } from "../../../../../commons/lib/utils";
+import { IItemQuestionAnswersListUIProps } from "./ItemQuestionAnswerList.types";
 
-export default function ItemQuestionAnswersListUI(props: any) {
+export default function ItemQuestionAnswersListUI(
+  props: IItemQuestionAnswersListUIProps
+) {
   return (
     <InfiniteScroll
       pageStart={0}
@@ -52,7 +55,6 @@ export default function ItemQuestionAnswersListUI(props: any) {
                     props.userId?.fetchUserLoggedIn?._id === "" || (
                       <S.QuestionAnswerButton
                         id={item.useditemQuestion._id}
-                        onClick={props.onClickAnswerButton}
                       ></S.QuestionAnswerButton>
                     )
                   ) : (

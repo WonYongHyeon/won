@@ -1,10 +1,12 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import {
-  CREATE_USEDITEM_QUESTION,
   CREATE_USEDITEM_QUESTION_ANSWER,
   UPDATE_USEDITEM_QUESTION_ANSWER,
 } from "./ItemQuestionAnswerWrite.queries";
-import { IItemQuestionWriteProps } from "./ItemQuestionAnswerWrite.types";
+import {
+  IForm,
+  IItemQuestionWriteProps,
+} from "./ItemQuestionAnswerWrite.types";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -16,10 +18,10 @@ const schema = yup.object({
   contents: yup.string().required("필수 입력 사항입니다."),
 });
 
-export default function ItemQuestionAnswerWrite(props: any) {
-  const router = useRouter();
-
-  const { register, handleSubmit, formState, watch } = useForm({
+export default function ItemQuestionAnswerWrite(
+  props: IItemQuestionWriteProps
+) {
+  const { register, handleSubmit } = useForm<IForm>({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
@@ -32,7 +34,7 @@ export default function ItemQuestionAnswerWrite(props: any) {
     UPDATE_USEDITEM_QUESTION_ANSWER
   );
 
-  const onClickSubmitButton = async (data: any) => {
+  const onClickSubmitButton = async (data: IForm) => {
     await createUseditemQuestionAnswer({
       variables: {
         createUseditemQuestionAnswerInput: {
@@ -44,7 +46,7 @@ export default function ItemQuestionAnswerWrite(props: any) {
     props.setItemId("");
   };
 
-  const onClickSubmitEditButton = async (data: any) => {
+  const onClickSubmitEditButton = async (data: IForm) => {
     await updateUseditemQuestionAnswer({
       variables: {
         updateUseditemQuestionAnswerInput: {
@@ -56,40 +58,6 @@ export default function ItemQuestionAnswerWrite(props: any) {
     props.setEditAnswerId("");
   };
 
-  // const { data, fetchMore } = useQuery(CREATE_USEDITEM_QUESTION, {
-  //   variables: {
-  //     useditemId: props.useditemId,
-  //   },
-  // });
-
-  // const onToggleModal = () => {
-  //   setIsModalVisible((prev) => !prev);
-  // };
-
-  // const loadFunc = () => {
-  //   if (!data) return;
-
-  //   fetchMore({
-  //     variables: {
-  //       page: Math.ceil(data.fetchBoardComments.length / 10) + 1,
-  //       boardId: props?.boardId,
-  //     },
-  //     updateQuery: (prev, { fetchMoreResult }) => {
-  //       if (!fetchMoreResult.fetchBoardComments) {
-  //         return {
-  //           fetchBoardComments: [...prev.fetchBoardComments],
-  //         };
-  //       }
-  //       return {
-  //         fetchBoardComments: [
-  //           ...prev.fetchBoardComments,
-  //           ...fetchMoreResult.fetchBoardComments,
-  //         ],
-  //       };
-  //     },
-  //   });
-  // };
-
   return (
     <>
       <ItemQuestionWriteUI
@@ -98,8 +66,6 @@ export default function ItemQuestionAnswerWrite(props: any) {
         handleSubmit={handleSubmit}
         onClickSubmitButton={onClickSubmitButton}
         onClickSubmitEditButton={onClickSubmitEditButton}
-        // data={data}
-        // loadFunc={loadFunc}
       />
     </>
   );

@@ -11,7 +11,11 @@ import { useEffect } from "react";
 import { getAccessToken } from "../lib/getAccessToken";
 import { AccessToken } from "../store";
 
-export default function ApolloSetting(props: any) {
+interface IApolloSettingProps {
+  children: any;
+}
+
+export default function ApolloSetting(props: IApolloSettingProps) {
   const [accessToken, setAccessToken] = useRecoilState(AccessToken);
 
   const uploadLink = createUploadLink({

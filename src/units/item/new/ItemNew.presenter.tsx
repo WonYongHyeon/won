@@ -1,7 +1,6 @@
 import * as S from "./ItemNew.styles";
 import UploadImage from "../../../commons/UploadImage/UploadImage.container";
 import { IProductNewUIProps } from "./ItemNew.types";
-import Input03 from "../../../commons/inputs/03";
 import Input02 from "../../../commons/inputs/02";
 import Button02 from "../../../commons/buttons/02";
 import { v4 as uuidv4 } from "uuid";

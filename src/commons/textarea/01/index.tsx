@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { UseFormRegister, UseFormRegisterReturn } from "react-hook-form";
 
 const Textarea = styled.textarea`
   width: 100%;
@@ -11,7 +12,7 @@ const Textarea = styled.textarea`
 
 interface IProps {
   holder: string;
-  register: any;
+  register: UseFormRegisterReturn<"contents">;
   defaultValue: string;
   maxLength: number;
 }

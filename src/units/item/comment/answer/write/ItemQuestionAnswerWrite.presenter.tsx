@@ -1,10 +1,10 @@
 import * as S from "./ItemQuestionAnswerWrite.styles";
 import { IItemQuestionWriteUIProps } from "./ItemQuestionAnswerWrite.types";
-import InfiniteScroll from "react-infinite-scroller";
-import { v4 as uuidv4 } from "uuid";
 import Textarea01 from "../../../../../commons/textarea/01";
 
-export default function ItemQuestionAnswerWriteUI(props: any) {
+export default function ItemQuestionAnswerWriteUI(
+  props: IItemQuestionWriteUIProps
+) {
   return (
     <S.Body>
       <S.Wrapper>

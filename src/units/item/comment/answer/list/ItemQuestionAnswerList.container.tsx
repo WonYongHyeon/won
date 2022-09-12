@@ -10,7 +10,9 @@ import {
 } from "./ItemQuestionAnswerList.queries";
 import { IItemQuestionAnswersListProps } from "./ItemQuestionAnswerList.types";
 
-export default function ItemQuestionAnswersList(props: any) {
+export default function ItemQuestionAnswersList(
+  props: IItemQuestionAnswersListProps
+) {
   const [editAnswerId, setEditAnswerId] = useState("");
 
   const { data, fetchMore, loading, refetch } = useQuery(
