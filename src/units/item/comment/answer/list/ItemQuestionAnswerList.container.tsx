@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import ItemQuestionListUI from "./ItemQuestionAnswerList.presenter";
 import {
   DELETE_USEDITEM_QUESTION_ANSWER,
@@ -54,17 +54,17 @@ export default function ItemQuestionAnswersList(
     });
   };
 
-  const onClickEditButton = (event: any) => {
-    setEditAnswerId(event.target.id);
+  const onClickEditButton = (event: MouseEvent<HTMLImageElement>) => {
+    setEditAnswerId(event.currentTarget.id);
   };
 
-  const onClickDeleteButton = (event: any) => {
+  const onClickDeleteButton = (event: MouseEvent<HTMLImageElement>) => {
     Modal.warning({
       content: "정말로 삭제하시겠습니까?",
       async onOk() {
         await deleteUseditemQuestionAnswer({
           variables: {
-            useditemQuestionAnswerId: event.target.id,
+            useditemQuestionAnswerId: event.currentTarget.id,
           },
         });
         refetch();

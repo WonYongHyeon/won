@@ -64,11 +64,11 @@ export default function BoardDetailUI(props: IBoardDetailProps) {
         <BodyWrapper>
           <Title>{props.data?.fetchBoard.title}</Title>
           <ImageWrapper>
-            {props.data?.fetchBoard.images.map((item: any) => {
-              return item ? (
+            {props.data?.fetchBoard.images.map((el: string) => {
+              return el ? (
                 <Image
                   key={uuidv4()}
-                  src={`https://storage.googleapis.com/${item}`}
+                  src={`https://storage.googleapis.com/${el}`}
                 />
               ) : (
                 <></>

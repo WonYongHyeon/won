@@ -18,7 +18,7 @@ export default function Pagination(props: IPaginationProps) {
 
   const onClickPrevPage = () => {
     if (start === 1) return;
-    setStart((prev: any) => prev - 10);
+    setStart((prev) => prev - 10);
     props.setNowPage(start - 10);
     props.refetch({
       page: start - 10,
@@ -27,7 +27,7 @@ export default function Pagination(props: IPaginationProps) {
 
   const onClickNextPage = () => {
     if (start + 10 <= lastPage) {
-      setStart((prev: any) => prev + 10);
+      setStart((prev) => prev + 10);
       props.setNowPage(start + 10);
       props.refetch({
         page: start + 10,

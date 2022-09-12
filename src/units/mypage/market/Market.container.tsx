@@ -1,8 +1,7 @@
 import { useQuery } from "@apollo/client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import MypageMarketUI from "./Market.presenter";
 import {
-  FETCH_POINT_TRANSACTIONS,
   FETCH_USEDITEMS_COUNT_I_BOUGHT,
   FETCH_USEDITEMS_COUNT_I_PICKED,
   FETCH_USEDITEMS_COUNT_I_SOLD,

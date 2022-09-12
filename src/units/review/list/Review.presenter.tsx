@@ -49,7 +49,7 @@ export default function ReviewListUI(props: IReviewListUIProps) {
                 {item.title
                   .replaceAll(props.search, `#$%${props.search}#$%`)
                   .split("#$%")
-                  .map((item: any) => (
+                  .map((item: string) => (
                     <S.Word key={uuidv4()} isMatched={props.search === item}>
                       {item}
                     </S.Word>

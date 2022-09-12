@@ -21,6 +21,6 @@ export interface IItemListUIProps {
   loadFunc: () => void;
   onClickSearch: () => void;
   onClickWriteButton: () => void;
-  onClickItem: (el: any) => () => void;
+  onClickItem: (el: IData) => () => void;
   onClickSellingSoldout: (el: boolean) => () => void;
 }
