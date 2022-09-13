@@ -91,9 +91,8 @@ export const TableDate = styled.div`
 export const CustomModalWrapper = styled.div`
   width: 100%;
   height: 100%;
-  overflow-y: hidden;
   position: absolute;
-  top: 0;
+  top: ${(props: { scrollY: number }) => props.scrollY}px;
   left: 0;
   display: flex;
   justify-content: center;

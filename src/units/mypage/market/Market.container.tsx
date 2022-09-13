@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MypageMarketUI from "./Market.presenter";
 import {
   FETCH_USEDITEMS_COUNT_I_BOUGHT,
@@ -19,6 +19,7 @@ export default function MypageMarket() {
   const [gifticonImg, setGifticonImg] = useState("");
   const [gifticonId, setGifticonId] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
   const { data: buyData, refetch: refetchBuyData } = useQuery(
     FETCH_USEDITEMS_I_BOUGHT,
@@ -61,6 +62,7 @@ export default function MypageMarket() {
     setGifticonImg(imgUrl);
     setGifticonId(id);
     setModalVisible(true);
+    setScrollY(window.scrollY);
   };
 
   const onClickModalCancel = () => {
@@ -90,8 +92,24 @@ export default function MypageMarket() {
     }
   };
 
+  useEffect(() => {
+    if (modalVisible) {
+      document.body.style.cssText = `
+      position: fixed; 
+      top: -${window.scrollY}px;
+      overflow-y: scroll;
+      width: 100%;`;
+      return () => {
+        const scrollY = document.body.style.top;
+        document.body.style.cssText = "";
+        window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+      };
+    }
+  }, [modalVisible]);
+
   return (
     <MypageMarketUI
+      scrollY={scrollY}
       buyData={buyData}
       buyCount={buyCount}
       soldData={soldData}

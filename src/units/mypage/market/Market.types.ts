@@ -83,4 +83,5 @@ export interface IMypageMarketUIProps {
   modalVisible: boolean;
   onClickModalCancel: () => void;
   onClickShare: () => void;
+  scrollY: number;
 }

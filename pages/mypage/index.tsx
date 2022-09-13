@@ -114,7 +114,6 @@ export default function MypagePage() {
   const onClickCharge = () => {
     const IMP = window.IMP;
     IMP.init("imp49910675");
-    // IMP.init("imp52318572");
 
     IMP.request_pay(
       {

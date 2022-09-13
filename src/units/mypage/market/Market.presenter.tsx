@@ -107,7 +107,10 @@ export default function MypageMarketUI(props: IMypageMarketUIProps) {
         </TabPane>
       </Tabs>
       {props.modalVisible && (
-        <S.CustomModalWrapper onClick={props.onClickModalCancel}>
+        <S.CustomModalWrapper
+          scrollY={scrollY}
+          onClick={props.onClickModalCancel}
+        >
           <S.CustomModal>
             <S.KakaoLinkButton onClick={props.onClickShare}>
               카카오로 공유하기
