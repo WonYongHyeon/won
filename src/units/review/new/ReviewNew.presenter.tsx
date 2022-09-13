@@ -25,12 +25,6 @@ import { IReviewWriteUIProps } from "./ReviewNew.types";
 
 export default function ReviewNewUI(props: IReviewWriteUIProps) {
   return (
-    // type="button"
-    //           onClick={
-    //             props.isEdit
-    //               ? props.onClickEdit
-    //               : props.onClickRegistrationButton
-    //           }
     <form
       onSubmit={props.handleSubmit(
         props.isEdit ? props.onClickEdit : props.onClickRegistrationButton
@@ -93,9 +87,7 @@ export default function ReviewNewUI(props: IReviewWriteUIProps) {
             </ImageWrapper>
           </EditWrapper>
           <Footer>
-            <RegistrationButton
-            // disabled={props.isEdit ? props.isEditDisabled : props.isDisabled}
-            >
+            <RegistrationButton>
               {props.isEdit ? "수정하기" : "등록하기"}
             </RegistrationButton>
           </Footer>

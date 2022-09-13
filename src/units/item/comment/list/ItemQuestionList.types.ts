@@ -11,8 +11,11 @@ export interface IData {
 }
 
 export interface IItemQuestionListProps {
-  useditemId: string;
+  useditemId?: string | string[];
   sellerId: string;
+  fetchQuestion: {
+    fetchUseditemQuestions: Array<IData>;
+  };
 }
 
 export interface IItemQuestionListUIProps {

@@ -58,17 +58,19 @@ export default function ItemNew(props: IProductNewProps) {
   };
 
   const onClickEdit = async (data: IForm) => {
-    if (
-      props.fetchData.fetchUseditem.name === data.name &&
-      props.fetchData.fetchUseditem.remarks === data.remarks &&
-      props.fetchData.fetchUseditem.price === data.price &&
-      props.fetchData.fetchUseditem.contents === data.contents &&
-      props.fetchData.fetchUseditem.images === fileUrls
-    ) {
-      Modal.error({
-        content: "변경 사항이 없습니다.",
-      });
-      return;
+    if (props.fetchData) {
+      if (
+        props.fetchData.fetchUseditem.name === data.name &&
+        props.fetchData.fetchUseditem.remarks === data.remarks &&
+        props.fetchData.fetchUseditem.price === data.price &&
+        props.fetchData.fetchUseditem.contents === data.contents &&
+        props.fetchData.fetchUseditem.images === fileUrls
+      ) {
+        Modal.error({
+          content: "변경 사항이 없습니다.",
+        });
+        return;
+      }
     }
 
     try {
@@ -121,8 +123,8 @@ export default function ItemNew(props: IProductNewProps) {
     if (props.fetchData?.fetchUseditem?.images?.length !== undefined) {
       setFileUrls([...props.fetchData?.fetchUseditem?.images]);
     }
-    onChangeContents(props.fetchData?.fetchUseditem?.contents);
-    onChangeGifticon(1, props.fetchData?.fetchUseditem?.remarks);
+    onChangeContents(props.fetchData?.fetchUseditem?.contents || "");
+    onChangeGifticon(1, props.fetchData?.fetchUseditem?.remarks || "");
   }, []);
 
   return (

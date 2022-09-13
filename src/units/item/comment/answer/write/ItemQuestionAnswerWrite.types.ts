@@ -5,10 +5,10 @@ export interface IForm {
   contents: string;
 }
 
-export interface IItemQuestionWriteProps {
-  useditemQuestionId: string;
+export interface IItemQuestionAnswerWriteProps {
+  useditemQuestionId?: string;
   useditemQuestionAnswerId?: string;
-  setItemId: Dispatch<SetStateAction<string>>;
+  setItemId?: Dispatch<SetStateAction<string>>;
   setEditAnswerId?: Dispatch<SetStateAction<string>>;
   defaultContents?: string;
 }

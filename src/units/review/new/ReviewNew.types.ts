@@ -26,12 +26,12 @@ export interface IFetchData {
 
 export interface IReviewNewProps {
   isEdit: boolean;
-  data: IFetchData;
+  data?: IFetchData;
 }
 
 export interface IReviewWriteUIProps {
   isEdit: boolean;
-  data: IFetchData;
+  data?: IFetchData;
   fileUrls: string[];
   register: UseFormRegister<IData>;
   handleSubmit: UseFormHandleSubmit<IData>;

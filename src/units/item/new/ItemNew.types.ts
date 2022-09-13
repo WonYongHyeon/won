@@ -15,13 +15,13 @@ export interface IForm {
 
 export interface IProductNewProps {
   isEdit: boolean;
-  fetchData: {
+  fetchData?: {
     fetchUseditem: IForm;
   };
 }
 
 export interface IProductNewUIProps {
-  fetchData: {
+  fetchData?: {
     fetchUseditem: IForm;
   };
   isEdit: boolean;

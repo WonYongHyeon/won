@@ -23,7 +23,7 @@ export default function ProductNewUI(props: IProductNewUIProps) {
             type="text"
             holder="상품명을 작성해주세요."
             register={props.register("name")}
-            defaultValue={props.fetchData?.fetchUseditem.name}
+            defaultValue={props.fetchData?.fetchUseditem.name || ""}
             readonly={false}
           ></Input02>
           <S.InputText>판매가격</S.InputText>
@@ -31,7 +31,7 @@ export default function ProductNewUI(props: IProductNewUIProps) {
             type="number"
             holder="판매 가격을 입력해주세요."
             register={props.register("price")}
-            defaultValue={props.fetchData?.fetchUseditem.price}
+            defaultValue={props.fetchData?.fetchUseditem.price || 0}
             readonly={false}
           ></Input02>
           <S.InputText>상품 설명</S.InputText>

@@ -8,19 +8,14 @@ import { NextRouter, useRouter } from "next/router";
 import { useMutation, useQuery } from "@apollo/client";
 import BoardDetailUI from "./ReviewDetail.presenter";
 import Swal from "sweetalert2";
+import { IBoardDetailProps } from "./ReviewDetail.types";
 
-export default function ReviewDetail() {
+export default function ReviewDetail(props: IBoardDetailProps) {
   const router: NextRouter = useRouter();
 
   const [deleteBoard] = useMutation(DELETE_BOARD);
   const [likeBoard] = useMutation(LIKE_BOARD);
   const [dislikeBoard] = useMutation(DISLIKE_BOARD);
-
-  const { data } = useQuery(FETCH_BOARD, {
-    variables: {
-      boardId: router.query?.id,
-    },
-  });
 
   const onClickLikeImage = () => {
     likeBoard({
@@ -75,7 +70,7 @@ export default function ReviewDetail() {
 
   return (
     <BoardDetailUI
-      data={data}
+      data={props.data}
       onClickDeleteButton={onClickDeleteButton}
       onClickListButton={onClickListButton}
       onClickEditButton={onClickEditButton}

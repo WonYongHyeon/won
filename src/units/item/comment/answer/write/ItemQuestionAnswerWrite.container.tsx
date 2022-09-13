@@ -5,7 +5,7 @@ import {
 } from "./ItemQuestionAnswerWrite.queries";
 import {
   IForm,
-  IItemQuestionWriteProps,
+  IItemQuestionAnswerWriteProps,
 } from "./ItemQuestionAnswerWrite.types";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -18,7 +18,7 @@ const schema = yup.object({
 });
 
 export default function ItemQuestionAnswerWrite(
-  props: IItemQuestionWriteProps
+  props: IItemQuestionAnswerWriteProps
 ) {
   const { register, handleSubmit } = useForm<IForm>({
     resolver: yupResolver(schema),
@@ -42,7 +42,7 @@ export default function ItemQuestionAnswerWrite(
         useditemQuestionId: props.useditemQuestionId,
       },
     });
-    props.setItemId("");
+    if (props.setItemId !== undefined) props.setItemId("");
   };
 
   const onClickSubmitEditButton = async (data: IForm) => {

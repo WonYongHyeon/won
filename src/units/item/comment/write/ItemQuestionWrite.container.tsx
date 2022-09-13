@@ -50,7 +50,8 @@ export default function ItemQuestionWrite(props: IItemQuestionWriteProps) {
         useditemQuestionId: props.editId,
       },
     });
-    props.setEditId("");
+
+    if (props.setEditId !== undefined) props.setEditId("");
     props.refetch();
   };
 
@@ -63,7 +64,6 @@ export default function ItemQuestionWrite(props: IItemQuestionWriteProps) {
       <ItemQuestionWriteUI
         editId={props.editId}
         defaultContents={props.defaultContents}
-        // fetchQuestion={props.fetchQuestion}
         useditemId={props.useditemId}
         register={register}
         handleSubmit={handleSubmit}

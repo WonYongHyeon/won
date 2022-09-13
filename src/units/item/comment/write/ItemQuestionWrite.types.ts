@@ -19,16 +19,17 @@ export interface IItemQuestionWriteProps {
       }>;
     }>
   >;
-  editId: string;
-  setEditId: Dispatch<SetStateAction<string>>;
-  defaultContents: string;
-  useditemId: string;
+  editId?: string;
+  setEditId?: Dispatch<SetStateAction<string>>;
+  defaultContents?: string;
+  useditemId?: string | string[];
+  forceUpdate?: () => void;
 }
 
 export interface IItemQuestionWriteUIProps {
-  editId: string;
-  defaultContents: string;
-  useditemId: string;
+  editId?: string;
+  defaultContents?: string;
+  useditemId?: string | string[];
   register: any;
   handleSubmit: any;
   onClickSubmitButton: (data: IData) => void;

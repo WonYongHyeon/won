@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-}
+  generateBuildId: () => "won",
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

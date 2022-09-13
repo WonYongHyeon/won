@@ -13,7 +13,7 @@ const Textarea = styled.textarea`
 interface IProps {
   holder: string;
   register: UseFormRegisterReturn<"contents">;
-  defaultValue: string;
+  defaultValue?: string;
   maxLength: number;
 }
 

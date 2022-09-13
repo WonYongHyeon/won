@@ -28,13 +28,13 @@ import {
   DeletePageButton,
 } from "./ReviewDetail.styles";
 
-import { IBoardDetailProps } from "./ReviewDetail.types";
+import { IBoardDetailUIProps } from "./ReviewDetail.types";
 import { Tooltip } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import { getDate } from "../../../commons/lib/utils";
-import Dompurify from "dompurify";
+import DOMPurify from "dompurify";
 
-export default function BoardDetailUI(props: IBoardDetailProps) {
+export default function BoardDetailUI(props: IBoardDetailUIProps) {
   return (
     <Body>
       <Wrapper>
@@ -77,7 +77,7 @@ export default function BoardDetailUI(props: IBoardDetailProps) {
           </ImageWrapper>
           <Contents
             dangerouslySetInnerHTML={{
-              __html: Dompurify.sanitize(props.data?.fetchBoard.contents),
+              __html: DOMPurify.sanitize(props.data?.fetchBoard.contents),
             }}
           ></Contents>
         </BodyWrapper>
