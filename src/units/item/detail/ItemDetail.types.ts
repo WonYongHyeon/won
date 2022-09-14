@@ -1,4 +1,5 @@
 import { ApolloQueryResult, OperationVariables } from "@apollo/client";
+import { MouseEvent } from "react";
 
 interface IData {
   fetchUseditem: {
@@ -22,6 +23,7 @@ interface IData {
 }
 
 export interface IItemDetailUIProps {
+  mainImg: string;
   loginUserId: {
     fetchUserLoggedIn: {
       _id: string;
@@ -33,6 +35,7 @@ export interface IItemDetailUIProps {
   onClickPick: () => void;
   onClickDeleteItem: () => void;
   onClickBuyItem: () => void;
+  onClickSubImage: (event: MouseEvent<HTMLImageElement>) => void;
 }
 
 export interface IItemDetailProps {

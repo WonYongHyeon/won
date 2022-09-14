@@ -11,9 +11,11 @@ import {
   TOGGLE_USEDITEM_PICK,
 } from "./ItemDetail.queries";
 import { IItemDetailProps } from "./ItemDetail.types";
+import { MouseEvent, useEffect, useState } from "react";
 
 export default function ItemDetail(props: IItemDetailProps) {
   const router = useRouter();
+  const [mainImg, setMainImg] = useState("");
 
   const { data: loginUserId } = useQuery(FETCH_USER_LOGGED_IN);
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
@@ -92,8 +94,17 @@ export default function ItemDetail(props: IItemDetailProps) {
     });
   };
 
+  const onClickSubImage = (event: MouseEvent<HTMLImageElement>) => {
+    setMainImg(event.currentTarget.id);
+  };
+
+  useEffect(() => {
+    setMainImg(props.data?.fetchUseditem.images[0]);
+  }, []);
+
   return (
     <ItemDetailUI
+      mainImg={mainImg}
       loginUserId={loginUserId}
       data={props.data}
       onClickPick={onClickPick}
@@ -101,6 +112,7 @@ export default function ItemDetail(props: IItemDetailProps) {
       onClickMoveItemListPage={onClickMoveItemListPage}
       onClickDeleteItem={onClickDeleteItem}
       onClickBuyItem={onClickBuyItem}
+      onClickSubImage={onClickSubImage}
     ></ItemDetailUI>
   );
 }
