@@ -102,6 +102,7 @@ export const CustomModalWrapper = styled.div`
 
 export const CustomModal = styled.div`
   width: 600px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -109,7 +110,8 @@ export const CustomModal = styled.div`
 `;
 
 export const GifticonImage = styled.img`
-  width: 600px;
+  max-width: 600px;
+  height: 700px;
 `;
 
 export const KakaoLinkButton = styled.button`
