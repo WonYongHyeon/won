@@ -33,6 +33,36 @@ export interface IPaginationProps {
         price: number;
         _id: string;
       }[];
+      fetchPointTransactionsOfBuying?: Array<{
+        amount: number;
+        status: string;
+        useditem: {
+          _id: string;
+          name: string;
+          price: number;
+        };
+        createdAt: Date;
+      }>;
+      fetchPointTransactionsOfLoading?: Array<{
+        amount: number;
+        status: string;
+        useditem: {
+          _id: string;
+          name: string;
+          price: number;
+        };
+        createdAt: Date;
+      }>;
+      fetchPointTransactionsOfSelling?: Array<{
+        amount: number;
+        status: string;
+        useditem: {
+          _id: string;
+          name: string;
+          price: number;
+        };
+        createdAt: Date;
+      }>;
     }>
   >;
   number: number;
