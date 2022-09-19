@@ -1,4 +1,4 @@
-import { LegacyRef, MutableRefObject, RefObject } from "react";
+import { RefObject } from "react";
 
 export interface IMainUIProps {
   one: RefObject<HTMLDivElement>;

@@ -1,5 +1,6 @@
 import { ApolloQueryResult, OperationVariables } from "@apollo/client";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
 
 export interface IData {
   contents: string;
@@ -30,9 +31,8 @@ export interface IItemQuestionWriteUIProps {
   editId?: string;
   defaultContents?: string;
   useditemId?: string | string[];
-  register: any;
-  handleSubmit: any;
-  onClickSubmitButton: (data: IData) => void;
-  onClickSubmitEditButton: (data: IData) => void;
-  onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  register: UseFormRegister<IData>;
+  handleSubmit: UseFormHandleSubmit<IData>;
+  onClickSubmitButton: (data: IData) => Promise<void>;
+  onClickSubmitEditButton: (data: IData) => Promise<void>;
 }

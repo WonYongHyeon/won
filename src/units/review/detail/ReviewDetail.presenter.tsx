@@ -48,17 +48,6 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
               </CreateDate>
             </NameWrapper>
           </HeaderLeft>
-          <HeaderIconWrapper>
-            <LinkIcon src="/img/link.png"></LinkIcon>
-            <Tooltip
-              title={
-                props.data?.fetchBoard.boardAddress?.address +
-                props.data?.fetchBoard.boardAddress?.addressDetail
-              }
-            >
-              <LocationIcon src="/img/location.png"></LocationIcon>
-            </Tooltip>
-          </HeaderIconWrapper>
         </HeaderWrapper>
         <DivideLine></DivideLine>
         <BodyWrapper>

@@ -10,11 +10,13 @@ export interface IData {
   seller: {
     name: string;
   };
+  day?: string;
+  __typename?: string;
 }
 
 export interface IItemListUIProps {
   onChangeSearch: (event: ChangeEvent<HTMLInputElement>) => void;
-  today: Array<string>;
+  today: Array<IData>;
   data: {
     fetchUseditems: Array<IData>;
   };

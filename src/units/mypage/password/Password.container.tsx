@@ -28,7 +28,7 @@ export default function MypagePassword(props: IMypagePasswordProps) {
     mode: "onChange",
   });
 
-  const onClickEditPassword = async (data: any) => {
+  const onClickEditPassword = async (data: IFormData) => {
     try {
       await loginUser({
         variables: {

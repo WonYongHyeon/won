@@ -15,7 +15,9 @@ export interface IBoardDetailProps {
 }
 
 export interface IBoardDetailUIProps {
-  data?: any;
+  data: {
+    fetchBoard: IData;
+  };
   onClickListButton: () => void;
   onClickEditButton: () => void;
   onClickDeleteButton: () => void;

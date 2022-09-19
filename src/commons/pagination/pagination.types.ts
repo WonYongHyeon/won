@@ -1,3 +1,4 @@
+import { ApolloQueryResult, OperationVariables } from "@apollo/client";
 import { Dispatch, MouseEvent, SetStateAction } from "react";
 
 export interface IPaginationUIProps {
@@ -12,7 +13,28 @@ export interface IPaginationUIProps {
 }
 
 export interface IPaginationProps {
-  refetch: any;
+  refetch: (
+    variables?: Partial<{ page: number; search: string }> | undefined
+  ) => Promise<
+    ApolloQueryResult<{
+      fetchUseditemsIBought?: {
+        soldAt: Date;
+        name: string;
+        price: number;
+        _id: string;
+      }[];
+      fetchUseditemsISold?: {
+        name: string;
+        price: number;
+        _id: string;
+      }[];
+      fetchUseditemsIPicked?: {
+        name: string;
+        price: number;
+        _id: string;
+      }[];
+    }>
+  >;
   number: number;
   nowPage: number;
   setNowPage: Dispatch<SetStateAction<number>>;

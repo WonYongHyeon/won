@@ -9,16 +9,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
 import ItemQuestionWriteUI from "./ItemQuestionWrite.presenter";
-import { ChangeEvent, useState } from "react";
 
 const schema = yup.object({
   contents: yup.string().required("필수 입력 사항입니다."),
 });
 
 export default function ItemQuestionWrite(props: IItemQuestionWriteProps) {
-  const [contents, setContents] = useState("");
-
-  const { register, handleSubmit, setValue, trigger } = useForm({
+  const { register, handleSubmit, setValue, trigger } = useForm<IData>({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
@@ -55,10 +52,6 @@ export default function ItemQuestionWrite(props: IItemQuestionWriteProps) {
     props.refetch();
   };
 
-  const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setContents(event.target.value);
-  };
-
   return (
     <>
       <ItemQuestionWriteUI
@@ -69,7 +62,6 @@ export default function ItemQuestionWrite(props: IItemQuestionWriteProps) {
         handleSubmit={handleSubmit}
         onClickSubmitButton={onClickSubmitButton}
         onClickSubmitEditButton={onClickSubmitEditButton}
-        onChangeContents={onChangeContents}
       />
     </>
   );

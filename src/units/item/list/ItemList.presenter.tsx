@@ -65,7 +65,7 @@ export default function ItemListUI(props: IItemListUIProps) {
       </S.Wrapper>
       <S.RightLeftWrapper>
         <S.TodayItemListWrapper>
-          {props.today.map((el: any) => {
+          {props.today.map((el: IData) => {
             return (
               <S.TodayItemWrapper
                 id={el._id}

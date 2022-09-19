@@ -1,6 +1,6 @@
 import { Dispatch, MouseEvent, SetStateAction } from "react";
 
-interface useditemQuestionAnswer {
+export interface IUseditemQuestionAnswer {
   _id: string;
   contents: string;
   user: {
@@ -10,6 +10,9 @@ interface useditemQuestionAnswer {
   createdAt: Date;
   useditemQuestion: {
     _id: string;
+    user: {
+      _id: string;
+    };
   };
 }
 
@@ -26,7 +29,7 @@ export interface IItemQuestionAnswersListUIProps {
     };
   };
   data: {
-    fetchUseditemQuestionAnswers: Array<useditemQuestionAnswer>;
+    fetchUseditemQuestionAnswers: Array<IUseditemQuestionAnswer>;
   };
   loadFunc: () => void;
   onClickEditButton: (event: MouseEvent<HTMLImageElement>) => void;

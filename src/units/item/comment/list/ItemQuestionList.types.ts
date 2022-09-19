@@ -1,3 +1,4 @@
+import { ApolloQueryResult } from "@apollo/client";
 import { Dispatch, MouseEvent, SetStateAction } from "react";
 
 export interface IData {
@@ -19,7 +20,11 @@ export interface IItemQuestionListProps {
 }
 
 export interface IItemQuestionListUIProps {
-  refetch: any;
+  refetch: (variables?: Partial<{ useditemId: string }> | undefined) => Promise<
+    ApolloQueryResult<{
+      fetchUsedItemQuestions: Array<IData>;
+    }>
+  >;
   editId: string;
   setEditId: Dispatch<SetStateAction<string>>;
   itemId: string;

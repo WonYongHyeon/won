@@ -5,7 +5,7 @@ import {
   DISLIKE_BOARD,
 } from "./ReviewDetail.query";
 import { NextRouter, useRouter } from "next/router";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import BoardDetailUI from "./ReviewDetail.presenter";
 import Swal from "sweetalert2";
 import { IBoardDetailProps } from "./ReviewDetail.types";

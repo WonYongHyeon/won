@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 const Input = styled.input`
   width: 100%;
@@ -13,7 +14,7 @@ const Input = styled.input`
 interface IProps {
   holder: string;
   type: string;
-  register: any;
+  register: UseFormRegisterReturn;
   defaultValue: string | number;
   readonly: boolean;
 }

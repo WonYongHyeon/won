@@ -4,6 +4,7 @@ import { useState, ChangeEvent, useEffect } from "react";
 import ItemListUI from "./ItemList.presenter";
 import { FETCH_USEDITEMS } from "./ItemList.queries";
 import _ from "lodash";
+import { IData } from "./ItemList.types";
 
 export default function ItemList() {
   const router: NextRouter = useRouter();
@@ -30,7 +31,7 @@ export default function ItemList() {
   }, 500);
 
   // 오늘 본 상품 만들기
-  const onClickItem = (el: any) => () => {
+  const onClickItem = (el: IData) => () => {
     const day = new Date();
 
     const yyyy = String(day.getFullYear());
@@ -43,7 +44,7 @@ export default function ItemList() {
     const todayItem = JSON.parse(sessionStorage.getItem("today") || "[]");
 
     // 2. 이미 담겨있는지 확인하기 있으면 이미 있는 친구는 삭제
-    const temp = todayItem.filter((item: any) => item._id !== el._id);
+    const temp = todayItem.filter((item: IData) => item._id !== el._id);
 
     // // 3. today에 추가
     const { __typename, ...El } = el;
@@ -107,8 +108,6 @@ export default function ItemList() {
         <></>
       ) : (
         <ItemListUI
-          // register={register}
-          // handleSubmit={handleSubmit}
           onChangeSearch={onChangeSearch}
           today={today}
           data={data}
