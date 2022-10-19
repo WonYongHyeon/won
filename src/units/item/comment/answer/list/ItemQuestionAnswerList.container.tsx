@@ -1,6 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
-import { useRouter } from "next/router";
 import { MouseEvent, useEffect, useState } from "react";
 import ItemQuestionListUI from "./ItemQuestionAnswerList.presenter";
 import {

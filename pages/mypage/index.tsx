@@ -136,7 +136,7 @@ export default function MypagePage() {
               ],
             });
             Swal.fire({
-              icon: "error",
+              icon: "success",
               text: "결제가 완료되었습니다.",
             });
           } catch (error: any) {
@@ -173,7 +173,7 @@ export default function MypagePage() {
       <Wrapper>
         <MenuWrapper>
           <Name>{data?.fetchUserLoggedIn.name} 님</Name>
-          <Point>포인트 : {data?.fetchUserLoggedIn.userPoint.amount} 원</Point>
+          <Point>포인트 : {data?.fetchUserLoggedIn.userPoint.amount} P</Point>
           <PointChargeWrapper>
             <PointChoice defaultValue="1000" onChange={onChangeCharge}>
               <Option value="1000">1000</Option>

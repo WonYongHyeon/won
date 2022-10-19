@@ -8,11 +8,18 @@ export default function LoginUI(props: ILoginUIProps) {
         <S.Title>Login</S.Title>
         <S.InputWrapper>
           <S.InputTitle>아이디</S.InputTitle>
-          <S.InputDiv onChange={props.onChangeEmail} />
+          <S.InputDiv
+            placeholder="test@test.com"
+            onChange={props.onChangeEmail}
+          />
         </S.InputWrapper>
         <S.InputWrapper>
           <S.InputTitle>비밀번호</S.InputTitle>
-          <S.InputDiv onChange={props.onChangePassword} />
+          <S.InputDiv
+            type="password"
+            placeholder="asd123"
+            onChange={props.onChangePassword}
+          />
         </S.InputWrapper>
         <S.CustomButton>
           <S.ButtonText>로그인</S.ButtonText>
