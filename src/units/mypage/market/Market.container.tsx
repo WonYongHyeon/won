@@ -84,8 +84,8 @@ export default function MypageMarket() {
           title: "구입하신 기프티콘입니다.",
           imageUrl: `https://storage.googleapis.com/${gifticonImg}`,
           link: {
-            mobileWebUrl: `http://localhost:3000/${gifticonId}`,
-            webUrl: `http://localhost:3000/${gifticonId}`,
+            mobileWebUrl: `https://juniorwon.shop/${gifticonId}`,
+            webUrl: `https://juniorwon.shop/${gifticonId}`,
           },
         },
       });
